@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: shield-of-athena-app:latest
+    container_name: shield-of-athena-app
+    ports:
+      - "8080:8080"
+    environment:
+      # Database
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/shieldofathena?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Toronto
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+
+      # Spring AI (OpenAI)
+      SPRING_AI_OPENAI_API_KEY: ${OPENAI_API_KEY}
+
+      # STRIPE (If we implement it)
+      # STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      # STRIPE_PUBLISHABLE_KEY: ${STRIPE_PUBLIC_KEY}
+      # STRIPE_SUCCESS_URL: http://localhost:8080/donation-success?session_id={CHECKOUT_SESSION_ID}
+      # STRIPE_CANCEL_URL: http://localhost:8080/donation-cancelled
+      
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0-debian
+    container_name: shield-of-athena-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: shieldofathena
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
+
