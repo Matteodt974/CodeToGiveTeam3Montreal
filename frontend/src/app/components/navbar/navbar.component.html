@@ -1,45 +1,69 @@
-<nav class="navbar">
-  <div class="navbar-container">
-    <!-- Logo -->
-    <div class="navbar-logo">
-      <a routerLink="/">
-        <span class="logo-icon">❤️</span>
-        <span class="logo-text">DonorConnect</span>
+<!-- File: frontend/src/app/components/navbar/navbar.component.html -->
+<nav class="sticky top-0 z-50 bg-white shadow-md">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <!-- Replace the Logo section in navbar.component.html -->
+      <a routerLink="/" class="flex items-center gap-2 flex-shrink-0">
+        <img src="assets/images/soa.jpg" alt="DonorConnect Logo" class="h-10 w-auto">
       </a>
-    </div>
 
-    <!-- Navigation Links -->
-    <ul class="navbar-menu" [class.active]="isMenuOpen">
-      <li class="nav-item">
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center gap-8">
         <a routerLink="/"
-           routerLinkActive="active"
+           routerLinkActive="text-indigo-600 border-b-2 border-indigo-600"
            [routerLinkActiveOptions]="{exact: true}"
-           (click)="closeMenu()">
+           (click)="closeMenu()"
+           class="text-gray-700 hover:text-indigo-600 transition-colors font-medium">
           Home
         </a>
-      </li>
-      <li class="nav-item">
         <a routerLink="/about"
-           routerLinkActive="active"
-           (click)="closeMenu()">
+           routerLinkActive="text-indigo-600 border-b-2 border-indigo-600"
+           (click)="closeMenu()"
+           class="text-gray-700 hover:text-indigo-600 transition-colors font-medium">
           About Us
         </a>
-      </li>
-      <li class="nav-item-cta">
-        <button class="btn-donate" (click)="navigateToDonate()">
+        <button (click)="navigateToDonate()"
+                class="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 shadow-sm transition-all duration-200 transform hover:scale-105">
           Donate Now
         </button>
-      </li>
-    </ul>
+      </div>
 
-    <!-- Mobile Menu Toggle -->
-    <button class="navbar-toggle"
-            (click)="toggleMenu()"
-            [class.active]="isMenuOpen"
-            aria-label="Toggle menu">
-      <span class="hamburger"></span>
-      <span class="hamburger"></span>
-      <span class="hamburger"></span>
-    </button>
+      <!-- Mobile Menu Toggle -->
+      <button (click)="toggleMenu()"
+              [class.active]="isMenuOpen"
+              aria-label="Toggle navigation menu"
+              class="md:hidden p-2 rounded-md hover:bg-gray-100 transition-colors">
+        <svg class="h-6 w-6 text-gray-900" [class.hidden]="isMenuOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg class="h-6 w-6 text-gray-900" [class.hidden]="!isMenuOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div *ngIf="isMenuOpen" class="md:hidden bg-white border-t border-gray-200 shadow-lg">
+    <div class="px-4 py-4 space-y-3">
+      <a routerLink="/"
+         routerLinkActive="text-indigo-600 bg-indigo-50"
+         [routerLinkActiveOptions]="{exact: true}"
+         (click)="closeMenu()"
+         class="block px-4 py-2 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 rounded-md transition-colors font-medium">
+        Home
+      </a>
+      <a routerLink="/about"
+         routerLinkActive="text-indigo-600 bg-indigo-50"
+         (click)="closeMenu()"
+         class="block px-4 py-2 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 rounded-md transition-colors font-medium">
+        About Us
+      </a>
+      <button (click)="navigateToDonate()"
+              class="w-full mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-all duration-200">
+        Donate Now
+      </button>
+    </div>
   </div>
 </nav>
