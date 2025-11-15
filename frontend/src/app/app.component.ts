@@ -13,5 +13,5 @@ import { QuizGameComponent } from './quiz-game/quiz-game.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'quiz-app';
+  title = 'frontend';
 }

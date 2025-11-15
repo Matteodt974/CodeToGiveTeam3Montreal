@@ -1,45 +1,45 @@
-# Multi-stage build for Spring Boot + Angular application
+version: "3.9"
 
-# Stage 1: Build Angular frontend
-FROM node:18-alpine AS angular-build
-WORKDIR /app/frontend
-  
-  # Copy Angular project files (when you have them)
-  # COPY frontend/package*.json ./
-  # RUN npm install
-  # COPY frontend/ ./
-  # RUN npm run build
-  
-  # Stage 2: Build Spring Boot backend
-FROM maven:3.9-eclipse-temurin-21 AS backend-build
-WORKDIR /app
-  
-  # Copy Maven files
-COPY pom.xml .
-  # Download dependencies (cached layer)
-RUN mvn dependency:go-offline -B
-  
-  # Copy source code
-COPY src ./src
-  
-  # Copy built Angular files to Spring Boot static resources (when ready)
-  # COPY --from=angular-build /app/frontend/dist/* ./src/main/resources/static/
-  
-  # Build the application
-RUN mvn clean package -DskipTests
-  
-  # Stage 3: Runtime
-FROM eclipse-temurin:17-jre-alpine
-WORKDIR /app
-  
-  # Copy the built JAR file
-COPY --from=backend-build /app/target/*.jar app.jar
-  
-  # Create directory for SQLite database
-RUN mkdir -p /app/data
-  
-  # Expose port
-EXPOSE 8080
-  
-  # Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: shield-of-athena-app:latest
+    container_name: shield-of-athena-app
+    ports:
+      - "8080:8080"
+    environment:
+      # Database
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/shieldofathena?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Toronto
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+
+      # Spring AI (OpenAI)
+      SPRING_AI_OPENAI_API_KEY: ${OPENAI_API_KEY}
+
+      # STRIPE (If we implement it)
+      # STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      # STRIPE_PUBLISHABLE_KEY: ${STRIPE_PUBLIC_KEY}
+      # STRIPE_SUCCESS_URL: http://localhost:8080/donation-success?session_id={CHECKOUT_SESSION_ID}
+      # STRIPE_CANCEL_URL: http://localhost:8080/donation-cancelled
+      
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0-debian
+    container_name: shield-of-athena-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: shieldofathena
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
+
