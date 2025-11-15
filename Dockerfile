@@ -23,7 +23,7 @@ RUN mvn dependency:go-offline -B
 COPY src ./src
 
 # Copy built Angular files to Spring Boot static resources (when ready)
-# COPY --from=angular-build /app/frontend/dist/* ./src/main/resources/static/
+COPY --from=angular-build /app/frontend/dist/**/browser ./src/main/resources/static/
 
 # Build the application
 RUN mvn clean package -DskipTests
