@@ -1,17 +1,12 @@
 package com.codetogive.codetogitteam3.controller;
 
-import com.codetogive.codetogitteam3.domain.Subscription;
-import com.codetogive.codetogitteam3.dto.CreateSubscriptionRequest;
-import com.codetogive.codetogitteam3.dto.SubscriptionDTO;
-import com.codetogive.codetogitteam3.repository.SubscriptionRepository;
+import com.codetogive.codetogitteam3.dto.subscription.CreateSubscriptionRequestDTO;
+import com.codetogive.codetogitteam3.dto.subscription.SubscriptionDTO;
 import com.codetogive.codetogitteam3.service.SubscriptionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @RequestMapping("/api/subscriptions")
@@ -20,7 +15,7 @@ public class SubscriptionController {
     private final SubscriptionService subscriptionService;
 
     @PostMapping
-    public ResponseEntity<SubscriptionDTO> create(@RequestBody @Valid CreateSubscriptionRequest req) {
+    public ResponseEntity<SubscriptionDTO> create(@RequestBody @Valid CreateSubscriptionRequestDTO req) {
         return ResponseEntity.ok(subscriptionService.create(req));
     }
 

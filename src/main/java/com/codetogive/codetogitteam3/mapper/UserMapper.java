@@ -1,6 +1,6 @@
 package com.codetogive.codetogitteam3.mapper;
 
-import com.codetogive.codetogitteam3.dto.UserDTO;
+import com.codetogive.codetogitteam3.dto.user.UserDTO;
 import com.codetogive.codetogitteam3.domain.User;
 
 public class UserMapper {

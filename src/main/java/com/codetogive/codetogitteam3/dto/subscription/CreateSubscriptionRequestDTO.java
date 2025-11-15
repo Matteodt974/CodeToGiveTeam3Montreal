@@ -1,4 +1,4 @@
-package com.codetogive.codetogitteam3.dto;
+package com.codetogive.codetogitteam3.dto.subscription;
 
 import com.codetogive.codetogitteam3.domain.Subscription;
 import jakarta.validation.constraints.Email;

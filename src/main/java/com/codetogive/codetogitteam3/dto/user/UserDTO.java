@@ -1,4 +1,4 @@
-package com.codetogive.codetogitteam3.dto;
+package com.codetogive.codetogitteam3.dto.user;
 
 import java.time.LocalDate;
 

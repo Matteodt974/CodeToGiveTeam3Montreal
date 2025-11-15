@@ -1,6 +1,6 @@
 package com.codetogive.codetogitteam3.controller;
 
-import com.codetogive.codetogitteam3.dto.BadgeDTO;
+import com.codetogive.codetogitteam3.dto.badge.BadgeDTO;
 import com.codetogive.codetogitteam3.service.BadgeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

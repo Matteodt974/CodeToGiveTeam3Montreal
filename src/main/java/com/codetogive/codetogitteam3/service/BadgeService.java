@@ -2,7 +2,7 @@ package com.codetogive.codetogitteam3.service;
 
 import com.codetogive.codetogitteam3.domain.Badge;
 import com.codetogive.codetogitteam3.domain.User;
-import com.codetogive.codetogitteam3.dto.BadgeDTO;
+import com.codetogive.codetogitteam3.dto.badge.BadgeDTO;
 import com.codetogive.codetogitteam3.mapper.BadgeMapper;
 import com.codetogive.codetogitteam3.repository.BadgeRepository;
 import com.codetogive.codetogitteam3.repository.UserRepository;

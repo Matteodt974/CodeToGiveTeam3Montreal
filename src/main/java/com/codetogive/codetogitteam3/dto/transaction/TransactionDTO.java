@@ -1,4 +1,4 @@
-package com.codetogive.codetogitteam3.dto;
+package com.codetogive.codetogitteam3.dto.transaction;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

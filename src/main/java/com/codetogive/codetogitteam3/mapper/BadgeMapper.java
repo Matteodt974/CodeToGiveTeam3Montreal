@@ -1,6 +1,6 @@
 package com.codetogive.codetogitteam3.mapper;
 
-import com.codetogive.codetogitteam3.dto.BadgeDTO;
+import com.codetogive.codetogitteam3.dto.badge.BadgeDTO;
 import com.codetogive.codetogitteam3.domain.Badge;
 
 public class BadgeMapper {
@@ -13,7 +13,7 @@ public class BadgeMapper {
                 badge.getId(),
                 badge.getName(),
                 badge.getDescription(),
-                badge.getIconUrl()
+                badge.getIcon()
         );
     }
 
@@ -25,7 +25,7 @@ public class BadgeMapper {
         return Badge.builder()
                 .name(dto.name())
                 .description(dto.description())
-                .iconUrl(dto.iconUrl())
+                .iconUrl(dto.icon())
                 .build();
     }
 
@@ -36,8 +36,8 @@ public class BadgeMapper {
         if (dto.description() != null) {
             badge.setDescription(dto.description());
         }
-        if (dto.iconUrl() != null) {
-            badge.setIconUrl(dto.iconUrl());
+        if (dto.icon() != null) {
+            badge.setIconUrl(dto.icon());
         }
     }
 }

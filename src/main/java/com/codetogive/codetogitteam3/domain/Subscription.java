@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString(exclude = {"user", "transactions"})
 public class Subscription {
     //region Attributes

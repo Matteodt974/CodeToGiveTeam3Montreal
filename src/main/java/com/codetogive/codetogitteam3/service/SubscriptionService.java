@@ -3,8 +3,8 @@ package com.codetogive.codetogitteam3.service;
 import com.codetogive.codetogitteam3.domain.Subscription;
 import com.codetogive.codetogitteam3.domain.Subscription.Status;
 import com.codetogive.codetogitteam3.domain.User;
-import com.codetogive.codetogitteam3.dto.CreateSubscriptionRequest;
-import com.codetogive.codetogitteam3.dto.SubscriptionDTO;
+import com.codetogive.codetogitteam3.dto.subscription.CreateSubscriptionRequestDTO;
+import com.codetogive.codetogitteam3.dto.subscription.SubscriptionDTO;
 import com.codetogive.codetogitteam3.mapper.SubscriptionMapper;
 import com.codetogive.codetogitteam3.repository.SubscriptionRepository;
 import com.codetogive.codetogitteam3.repository.UserRepository;
@@ -13,7 +13,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class SubscriptionService {
     private final BadgeService badgeService;
 
     @Transactional
-    public SubscriptionDTO create(CreateSubscriptionRequest req) {
+    public SubscriptionDTO create(CreateSubscriptionRequestDTO req) {
         User user = userRepo.findByEmail(req.email())
                 .orElseThrow(() -> new IllegalArgumentException("User not found with email: " + req.email()));
 

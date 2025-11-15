@@ -1,6 +1,6 @@
 package com.codetogive.codetogitteam3.mapper;
 
-import com.codetogive.codetogitteam3.dto.SubscriptionDTO;
+import com.codetogive.codetogitteam3.dto.subscription.SubscriptionDTO;
 import com.codetogive.codetogitteam3.domain.Subscription;
 
 public class SubscriptionMapper {
