@@ -25,7 +25,31 @@
     </div>
   </section>
 
-  <app-quiz-game></app-quiz-game>
+  <!-- Quiz Section -->
+  <section class="quiz-intro-section" *ngIf="!showQuiz">
+    <div class="quiz-intro-content">
+      <img
+        src="assets/images/quiz-banner.jpg"
+        alt="Quiz banner image to go here"
+        class="quiz-banner-image"
+      />
+      <div class="quiz-intro-overlay">
+        <h2>Découvrez votre profil de donateur</h2>
+        <p>
+          Répondez à notre quiz pour trouver les causes qui vous correspondent
+          le mieux
+        </p>
+        <button class="btn-take-quiz" (click)="onTakeQuizClick()">
+          Take Quiz
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div id="quiz-section" *ngIf="showQuiz">
+    <app-quiz-game></app-quiz-game>
+  </div>
+
   <!-- Impact Stats Section -->
   <section class="stats-section">
     <div class="container">
