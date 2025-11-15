@@ -1,0 +1,41 @@
+<app-page backgroundColor="#ffffff">
+  <div class="profile-container">
+    <!-- En-tête du profil -->
+    <div class="profile-header">
+      <h1>Mon Profil</h1>
+    </div>
+
+    <!-- Section Montant Total -->
+    <div class="total-donation-section">
+      <div class="donation-card">
+        <div class="donation-icon">💰</div>
+        <div class="donation-details">
+          <h2>Montant Total des Donations</h2>
+          <p class="donation-amount">{{ totalDonationAmount }} $</p>
+          <p class="donation-count">{{ userDonationCount }} donation(s) effectuée(s)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Badges -->
+    <div class="badges-section">
+      <h2>Vos Badges de Donateur</h2>
+      
+      <div class="earned-badges" *ngIf="earnedBadges.length > 0">
+        <div class="badges-grid">
+          @for (badge of earnedBadges; track badge.id) {
+          <div class="badge earned">
+            <span class="badge-icon">{{ badge.icon }}</span>
+            <span class="badge-name">{{ badge.name }}</span>
+            <span class="badge-description">{{ badge.description }}</span>
+          </div>
+          }
+        </div>
+      </div>
+
+      <div class="no-badges" *ngIf="earnedBadges.length === 0">
+        <p>Faites votre première donation pour obtenir votre premier badge! 🎉</p>
+      </div>
+    </div>
+  </div>
+</app-page>

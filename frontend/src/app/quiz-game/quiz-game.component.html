@@ -1,0 +1,101 @@
+<div class="quiz-container">
+  <!-- Quiz Questions -->
+  <div *ngIf="!showResult" class="quiz-screen">
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-bar" [style.width.%]="progress"></div>
+    </div>
+
+    <div class="question-info">
+      <span>Question {{ currentQuestionIndex + 1 }} / {{ questions.length }}</span>
+    </div>
+
+    <!-- Question -->
+    <div class="question-card">
+      <h2>{{ currentQuestion.question }}</h2>
+
+      <!-- Options -->
+      <div class="options-container">
+        <div
+          *ngFor="let option of currentQuestion.options; let i = index"
+          class="option"
+          [class.selected]="selectedAnswer === i && !answerSubmitted"
+          [class.correct]="shouldShowCorrect(i)"
+          [class.wrong]="isWrongAnswer(i)"
+          [class.disabled]="answerSubmitted"
+          (click)="selectAnswer(i)">
+          <span class="option-letter">{{ getOptionLetter(i) }}</span>
+          <span class="option-text">{{ option }}</span>
+          <span *ngIf="shouldShowCorrect(i)" class="feedback-icon">✓</span>
+          <span *ngIf="isWrongAnswer(i)" class="feedback-icon">✗</span>
+        </div>
+      </div>
+
+      <!-- Feedback Message -->
+      <div *ngIf="showFeedback" class="feedback-message" [class.correct-feedback]="isCorrectAnswer(selectedAnswer!)" [class.wrong-feedback]="!isCorrectAnswer(selectedAnswer!)">
+        <span *ngIf="isCorrectAnswer(selectedAnswer!)">
+          Excellent!
+        </span>
+        <span *ngIf="!isCorrectAnswer(selectedAnswer!)">
+          Oups! The right answer was: {{ currentQuestion.options[currentQuestion.correctAnswer] }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="navigation-buttons">
+      <button
+        class="btn btn-secondary"
+        (click)="previousQuestion()"
+        [disabled]="currentQuestionIndex === 0">
+        ← Previous
+      </button>
+
+      <button
+        *ngIf="!answerSubmitted"
+        class="btn btn-primary"
+        (click)="submitAnswer()"
+        [disabled]="selectedAnswer === null">
+        Submit
+      </button>
+
+      <button
+        *ngIf="answerSubmitted"
+        class="btn btn-primary"
+        (click)="nextQuestion()">
+        {{ currentQuestionIndex === questions.length - 1 ? 'See results' : 'Next →' }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Results Screen -->
+  <div *ngIf="showResult" class="result-screen">
+    <div class="result-card">
+      <h1>{{ scoreMessage }}</h1>
+
+      <div class="score-circle">
+        <div class="score-value">{{ score }} / {{ questions.length }}</div>
+        <div class="score-percentage">{{ scorePercentage }}%</div>
+      </div>
+
+      <div class="result-details">
+        <div class="result-item">
+          <span class="result-label">Right answer:</span>
+          <span class="result-value correct">{{ score }}</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">Wrong answer:</span>
+          <span class="result-value incorrect">{{ questions.length - score }}</span>
+        </div>
+      </div>
+
+      <div class="shield-info">
+        <p>The Shield of Athenas provides professional support, Culturally and linguistically adapted interventions and prevention to the needs of women victims of family and/or conjugal violence and their children, as well as members of ethnocultural communities.</p>
+      </div>
+
+      <button class="btn btn-primary" (click)="restartQuiz()">
+        Restart ?
+      </button>
+    </div>
+  </div>
+</div>

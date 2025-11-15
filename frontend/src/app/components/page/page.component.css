@@ -1,0 +1,22 @@
+.page-content {
+  min-height: calc(100vh - 70px - 250px); /* viewport - navbar - footer */
+  transition: background-color 0.3s ease;
+}
+
+.page-content:not(.full-width) {
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-content.full-width {
+  padding: 0;
+  max-width: 100%;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .page-content:not(.full-width) {
+    padding: 2rem 1rem;
+  }
+}
