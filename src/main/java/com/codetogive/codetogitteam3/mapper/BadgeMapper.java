@@ -17,7 +17,7 @@ public class BadgeMapper {
         );
     }
 
-    public static Badge toEntity (BadgeDTO dto) {
+    public static Badge toEntity(BadgeDTO dto) {
         if (dto == null) {
             return null;
         }
@@ -30,13 +30,13 @@ public class BadgeMapper {
     }
 
     public static void updateEntity(Badge badge, BadgeDTO dto) {
-        if (dto.name()!= null) {
+        if (dto.name() != null) {
             badge.setName(dto.name());
         }
-        if (dto.description()!= null) {
+        if (dto.description() != null) {
             badge.setDescription(dto.description());
         }
-        if (dto.iconUrl()!= null) {
+        if (dto.iconUrl() != null) {
             badge.setIconUrl(dto.iconUrl());
         }
     }

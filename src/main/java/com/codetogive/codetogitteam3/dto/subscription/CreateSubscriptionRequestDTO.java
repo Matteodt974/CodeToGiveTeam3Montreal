@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
 
-public record CreateSubscriptionRequest(
+public record CreateSubscriptionRequestDTO(
         @Email String email, // TODO: swap later to authenticated user
         @NotNull @Positive BigDecimal amount,
         @NotNull Subscription.Tier tier

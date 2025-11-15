@@ -12,6 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString(exclude = "users")
 public class Badge {
     //region Attributes
     @Id
