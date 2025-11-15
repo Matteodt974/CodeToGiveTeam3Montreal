@@ -1,20 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { QuizGameComponent } from './quiz-game/quiz-game.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, QuizGameComponent],
-  template: `
-    <div>
-      <button *ngIf="!showQuiz" (click)="showQuiz = true">
-        Commencer le Quiz
-      </button>
-
-      <app-quiz-game *ngIf="showQuiz"></app-quiz-game>
-    </div>
-  `
+  imports: [CommonModule, RouterModule],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'frontend';

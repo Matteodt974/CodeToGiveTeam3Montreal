@@ -3,27 +3,52 @@
   <section class="hero-section" id="donate-section">
     <div class="hero-overlay">
       <div class="hero-content">
-    <div class="text-section">
-      <h1>Bienvenue sur notre plateforme</h1>
-      <p>
-        Découvrez une expérience unique et innovante. Nous vous offrons
-        les meilleurs services pour répondre à tous vos besoins.
-      </p>
-    </div>
+        <div class="text-section">
+          <h1>Bienvenue sur notre plateforme</h1>
+          <p>
+            Découvrez une expérience unique et innovante. Nous vous offrons les
+            meilleurs services pour répondre à tous vos besoins.
+          </p>
+        </div>
 
-    <div class="image-section">
-      <img
-        src="assets/images/middlepage.jpg"
-        alt="Hero image"
-        class="hero-image"
-      />
-      <button class="hero-button" (click)="onDonateClick()">
-        Commencer
-      </button>
-    </div>
-  </div>
+        <div class="image-section">
+          <img
+            src="assets/images/middlepage.jpg"
+            alt="Hero image"
+            class="hero-image"
+          />
+          <button class="hero-button" (click)="onDonateClick()">
+            Commencer
+          </button>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- Quiz Section -->
+  <section class="quiz-intro-section" *ngIf="!showQuiz">
+    <div class="quiz-intro-content">
+      <img
+        src="assets/images/quiz-banner.jpg"
+        alt="Quiz banner image to go here"
+        class="quiz-banner-image"
+      />
+      <div class="quiz-intro-overlay">
+        <h2>Découvrez votre profil de donateur</h2>
+        <p>
+          Répondez à notre quiz pour trouver les causes qui vous correspondent
+          le mieux
+        </p>
+        <button class="btn-take-quiz" (click)="onTakeQuizClick()">
+          Take Quiz
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div id="quiz-section" *ngIf="showQuiz">
+    <app-quiz-game></app-quiz-game>
+  </div>
 
   <!-- Impact Stats Section -->
   <section class="stats-section">
