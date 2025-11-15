@@ -1,0 +1,56 @@
+<section class="bg-gray-50 py-16" aria-labelledby="impact-tracker-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <!-- Left Column: Organization Info -->
+      <div class="space-y-6">
+        <h2
+          id="impact-tracker-heading"
+          class="text-4xl font-bold text-blue-900 mb-6"
+        >
+          Shield of Athena
+        </h2>
+
+        <div class="prose prose-lg text-gray-700 space-y-4">
+          <p>
+            For over three decades, Shield of Athena has been a beacon of hope for
+            families escaping violence. We provide emergency shelter, counseling
+            services, and prevention programs that break the cycle of abuse.
+          </p>
+
+          <p>
+            Our comprehensive approach addresses immediate safety needs while
+            building long-term resilience through therapy, education, and community
+            support. Every donation directly funds life-saving services and prevention
+            programs.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Impact Statistics -->
+      <div
+        class="bg-white border-2 border-blue-900 rounded-lg p-8 shadow-md"
+        role="region"
+        aria-label="Impact Statistics"
+      >
+        <div class="space-y-6">
+          <div
+            *ngFor="let stat of animatedStats; let i = index"
+            class="flex justify-between items-center pb-4"
+            [class.border-b]="i < animatedStats.length - 1"
+            [class.border-gray-200]="i < animatedStats.length - 1"
+          >
+            <span class="text-gray-800 font-medium text-lg">
+              {{ stat.label }}
+            </span>
+            <span
+              [class]="stat.color + ' text-2xl font-bold tabular-nums'"
+              [attr.aria-label]="formatNumber(stat.value) + ' ' + stat.label"
+            >
+              {{ formatNumber(stat.value) }}{{ stat.suffix }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,359 @@
+<section class="bg-gradient-to-br from-blue-50 to-indigo-50 py-16 px-4">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">
+        A Family's Journey to Safety
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Your donation supports families through every step of their journey from crisis to independence. See how your contribution makes a lasting impact.
+      </p>
+    </div>
+
+    <!-- Journey Summary Card -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-12 border-l-4 border-indigo-600">
+      <div class="flex items-start gap-4">
+        <mat-icon class="text-indigo-600 text-4xl">info</mat-icon>
+        <div class="flex-1">
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Complete Journey Cost: $1,875</h3>
+          <p class="text-lg text-gray-700 mb-4">
+            Your donation of <strong class="text-indigo-600">${{ selectedAmount }}</strong> covers
+            <span class="font-semibold text-indigo-600">{{ journeyPercentage }}%</span> of a family's complete journey to safety and independence.
+          </p>
+
+          <!-- Progress Bar -->
+          <div class="relative w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+            <div
+              class="absolute top-0 left-0 h-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-500 ease-out"
+              [style.width.%]="journeyPercentage"
+              role="progressbar"
+              [attr.aria-valuenow]="journeyPercentage"
+              aria-valuemin="0"
+              aria-valuemax="100">
+            </div>
+          </div>
+
+          <div class="flex justify-between mt-2 text-sm text-gray-600">
+            <span>${{ selectedAmount }} donated</span>
+            <span>$1,875 total journey</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex gap-4 justify-center mb-16 flex-wrap">
+      <button
+        mat-raised-button
+        color="primary"
+        class="!px-8 !py-3 !text-lg !rounded-full"
+        (click)="onPlayAnimation()"
+        [disabled]="isAnimating">
+        <mat-icon class="mr-2">play_circle</mat-icon>
+        Watch Journey Animation
+      </button>
+
+      <button
+        mat-stroked-button
+        color="primary"
+        class="!px-8 !py-3 !text-lg !rounded-full"
+        (click)="onResetJourney()"
+        [disabled]="isAnimating">
+        <mat-icon class="mr-2">refresh</mat-icon>
+        Reset Journey
+      </button>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative">
+      <!-- Vertical Line -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-red-400 via-yellow-400 to-green-400 hidden md:block"></div>
+
+      <!-- Timeline Steps -->
+      <div class="space-y-12">
+        <!-- Step 1: Crisis -->
+        <div
+          class="relative"
+          [class.journey-step-active]="currentStep >= 0"
+          [class.journey-step-completed]="currentStep > 0">
+          <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
+            <!-- Left Content -->
+            <div class="md:text-right mb-6 md:mb-0">
+              <div class="bg-white rounded-xl shadow-lg p-6 inline-block max-w-md">
+                <div class="flex items-start gap-4 md:flex-row-reverse">
+                  <div class="flex-shrink-0 w-16 h-16 rounded-full bg-red-100 flex items-center justify-center">
+                    <mat-icon class="text-red-600 !text-4xl !w-10 !h-10">crisis_alert</mat-icon>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Crisis Response</h3>
+                    <p class="text-gray-600 mb-3">
+                      Sarah and her children arrive at 2am with only a backpack
+                    </p>
+                    <div class="bg-red-50 rounded-lg p-3 border-l-4 border-red-400">
+                      <p class="text-sm font-semibold text-red-800">Emergency shelter: $250</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center Icon (Mobile) -->
+            <div class="flex justify-center my-4 md:hidden">
+              <div class="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center shadow-lg">
+                <mat-icon class="text-white">check</mat-icon>
+              </div>
+            </div>
+
+            <!-- Right Empty -->
+            <div class="hidden md:block"></div>
+          </div>
+
+          <!-- Center Icon (Desktop) -->
+          <div class="hidden md:flex absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-red-500 items-center justify-center shadow-xl z-10 transition-all duration-300"
+               [class.scale-125]="currentStep === 0"
+               [class.bg-green-500]="currentStep > 0">
+            <mat-icon class="text-white !text-3xl">{{ currentStep > 0 ? 'check' : 'crisis_alert' }}</mat-icon>
+          </div>
+        </div>
+
+        <!-- Step 2: Stabilization -->
+        <div
+          class="relative"
+          [class.journey-step-active]="currentStep >= 1"
+          [class.journey-step-completed]="currentStep > 1">
+          <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
+            <!-- Left Empty -->
+            <div class="hidden md:block"></div>
+
+            <!-- Right Content -->
+            <div class="mb-6 md:mb-0">
+              <div class="bg-white rounded-xl shadow-lg p-6 inline-block max-w-md">
+                <div class="flex items-start gap-4">
+                  <div class="flex-shrink-0 w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center">
+                    <mat-icon class="text-orange-600 !text-4xl !w-10 !h-10">health_and_safety</mat-icon>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Stabilization</h3>
+                    <p class="text-gray-600 mb-3">
+                      Legal advocacy, safety planning, and basic needs support
+                    </p>
+                    <div class="bg-orange-50 rounded-lg p-3 border-l-4 border-orange-400">
+                      <p class="text-sm font-semibold text-orange-800">Legal & advocacy: $425</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center Icon (Mobile) -->
+            <div class="flex justify-center my-4 md:hidden">
+              <div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center shadow-lg">
+                <mat-icon class="text-white">check</mat-icon>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center Icon (Desktop) -->
+          <div class="hidden md:flex absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-orange-500 items-center justify-center shadow-xl z-10 transition-all duration-300"
+               [class.scale-125]="currentStep === 1"
+               [class.bg-green-500]="currentStep > 1">
+            <mat-icon class="text-white !text-3xl">{{ currentStep > 1 ? 'check' : 'health_and_safety' }}</mat-icon>
+          </div>
+        </div>
+
+        <!-- Step 3: Healing -->
+        <div
+          class="relative"
+          [class.journey-step-active]="currentStep >= 2"
+          [class.journey-step-completed]="currentStep > 2">
+          <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
+            <!-- Left Content -->
+            <div class="md:text-right mb-6 md:mb-0">
+              <div class="bg-white rounded-xl shadow-lg p-6 inline-block max-w-md">
+                <div class="flex items-start gap-4 md:flex-row-reverse">
+                  <div class="flex-shrink-0 w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center">
+                    <mat-icon class="text-purple-600 !text-4xl !w-10 !h-10">psychology</mat-icon>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Healing & Therapy</h3>
+                    <p class="text-gray-600 mb-3">
+                      Trauma counseling and art therapy for children
+                    </p>
+                    <div class="bg-purple-50 rounded-lg p-3 border-l-4 border-purple-400">
+                      <p class="text-sm font-semibold text-purple-800">Therapy (12 sessions): $300</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center Icon (Mobile) -->
+            <div class="flex justify-center my-4 md:hidden">
+              <div class="w-12 h-12 rounded-full bg-purple-500 flex items-center justify-center shadow-lg">
+                <mat-icon class="text-white">check</mat-icon>
+              </div>
+            </div>
+
+            <!-- Right Empty -->
+            <div class="hidden md:block"></div>
+          </div>
+
+          <!-- Center Icon (Desktop) -->
+          <div class="hidden md:flex absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-purple-500 items-center justify-center shadow-xl z-10 transition-all duration-300"
+               [class.scale-125]="currentStep === 2"
+               [class.bg-green-500]="currentStep > 2">
+            <mat-icon class="text-white !text-3xl">{{ currentStep > 2 ? 'check' : 'psychology' }}</mat-icon>
+          </div>
+        </div>
+
+        <!-- Step 4: Building Skills -->
+        <div
+          class="relative"
+          [class.journey-step-active]="currentStep >= 3"
+          [class.journey-step-completed]="currentStep > 3">
+          <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
+            <!-- Left Empty -->
+            <div class="hidden md:block"></div>
+
+            <!-- Right Content -->
+            <div class="mb-6 md:mb-0">
+              <div class="bg-white rounded-xl shadow-lg p-6 inline-block max-w-md">
+                <div class="flex items-start gap-4">
+                  <div class="flex-shrink-0 w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center">
+                    <mat-icon class="text-blue-600 !text-4xl !w-10 !h-10">school</mat-icon>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Building Skills</h3>
+                    <p class="text-gray-600 mb-3">
+                      Job training, financial literacy, parenting support workshops
+                    </p>
+                    <div class="bg-blue-50 rounded-lg p-3 border-l-4 border-blue-400">
+                      <p class="text-sm font-semibold text-blue-800">Skills training: $400</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center Icon (Mobile) -->
+            <div class="flex justify-center my-4 md:hidden">
+              <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center shadow-lg">
+                <mat-icon class="text-white">check</mat-icon>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center Icon (Desktop) -->
+          <div class="hidden md:flex absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-blue-500 items-center justify-center shadow-xl z-10 transition-all duration-300"
+               [class.scale-125]="currentStep === 3"
+               [class.bg-green-500]="currentStep > 3">
+            <mat-icon class="text-white !text-3xl">{{ currentStep > 3 ? 'check' : 'school' }}</mat-icon>
+          </div>
+        </div>
+
+        <!-- Step 5: Independence -->
+        <div
+          class="relative"
+          [class.journey-step-active]="currentStep >= 4"
+          [class.journey-step-completed]="currentStep > 4">
+          <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
+            <!-- Left Content -->
+            <div class="md:text-right mb-6 md:mb-0">
+              <div class="bg-white rounded-xl shadow-lg p-6 inline-block max-w-md">
+                <div class="flex items-start gap-4 md:flex-row-reverse">
+                  <div class="flex-shrink-0 w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center">
+                    <mat-icon class="text-indigo-600 !text-4xl !w-10 !h-10">home</mat-icon>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Independence</h3>
+                    <p class="text-gray-600 mb-3">
+                      Sarah finds stable employment and moves into permanent housing
+                    </p>
+                    <div class="bg-indigo-50 rounded-lg p-3 border-l-4 border-indigo-400">
+                      <p class="text-sm font-semibold text-indigo-800">Transition support: $150</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center Icon (Mobile) -->
+            <div class="flex justify-center my-4 md:hidden">
+              <div class="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center shadow-lg">
+                <mat-icon class="text-white">check</mat-icon>
+              </div>
+            </div>
+
+            <!-- Right Empty -->
+            <div class="hidden md:block"></div>
+          </div>
+
+          <!-- Center Icon (Desktop) -->
+          <div class="hidden md:flex absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-indigo-500 items-center justify-center shadow-xl z-10 transition-all duration-300"
+               [class.scale-125]="currentStep === 4"
+               [class.bg-green-500]="currentStep > 4">
+            <mat-icon class="text-white !text-3xl">{{ currentStep > 4 ? 'check' : 'home' }}</mat-icon>
+          </div>
+        </div>
+
+        <!-- Step 6: Thriving -->
+        <div
+          class="relative"
+          [class.journey-step-active]="currentStep >= 5"
+          [class.journey-step-completed]="currentStep > 5">
+          <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
+            <!-- Left Empty -->
+            <div class="hidden md:block"></div>
+
+            <!-- Right Content -->
+            <div>
+              <div class="bg-white rounded-xl shadow-lg p-6 inline-block max-w-md">
+                <div class="flex items-start gap-4">
+                  <div class="flex-shrink-0 w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
+                    <mat-icon class="text-green-600 !text-4xl !w-10 !h-10">celebration</mat-icon>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Thriving</h3>
+                    <p class="text-gray-600 mb-3">
+                      Children excel in school, Sarah becomes a peer mentor for other survivors
+                    </p>
+                    <div class="bg-green-50 rounded-lg p-3 border-l-4 border-green-400">
+                      <p class="text-sm font-semibold text-green-800">Follow-up support: $100</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center Icon (Mobile) -->
+            <div class="flex justify-center my-4 md:hidden">
+              <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center shadow-lg">
+                <mat-icon class="text-white">check</mat-icon>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center Icon (Desktop) -->
+          <div class="hidden md:flex absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-green-500 items-center justify-center shadow-xl z-10 transition-all duration-300"
+               [class.scale-125]="currentStep === 5">
+            <mat-icon class="text-white !text-3xl">celebration</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="mt-16 text-center bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-white">
+      <h3 class="text-3xl font-bold mb-4">Your Donation Powers This Entire Journey</h3>
+      <p class="text-xl mb-6 opacity-90">
+        Every dollar brings families closer to safety, healing, and independence
+      </p>
+      <button
+        mat-raised-button
+        class="!bg-white !text-indigo-600 !px-10 !py-4 !text-lg !rounded-full !font-semibold hover:!bg-gray-100">
+        <mat-icon class="mr-2">favorite</mat-icon>
+        Make Your Impact Today
+      </button>
+    </div>
+  </div>
+</section>

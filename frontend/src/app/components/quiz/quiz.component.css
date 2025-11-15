@@ -1,0 +1,32 @@
+/* Additional custom styles if needed beyond Tailwind */
+
+/* Smooth transitions for answer selection */
+.quiz-option {
+  @apply transition-all duration-200;
+}
+
+/* Progress bar animation */
+.progress-fill {
+  transition: width 0.3s ease-out;
+}
+
+/* Focus visible for accessibility */
+button:focus-visible {
+  @apply ring-2 ring-offset-2;
+}
+
+/* Ensure good contrast for accessibility */
+.explanation-box {
+  @apply text-base leading-relaxed;
+}
+
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+}

@@ -1,0 +1,42 @@
+<section class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-16 px-4 sm:py-20 md:py-24 lg:py-32">
+  <!-- Background pattern overlay -->
+  <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')]"></div>
+
+  <div class="container mx-auto max-w-6xl relative z-10">
+    <div class="text-center space-y-6 md:space-y-8">
+      <!-- Main Heading -->
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight px-4 animate-fade-in">
+        {{ mainHeading }}
+      </h1>
+
+      <!-- Subtext -->
+      <p class="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-4xl mx-auto px-4 text-blue-100 animate-fade-in-delay">
+        {{ heroSubtext }}
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6 md:pt-8 px-4 animate-slide-up">
+        <button
+          (click)="onDonateNow()"
+          class="w-full sm:w-auto px-8 py-4 bg-red-600 hover:bg-red-700 text-white text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-red-300 active:scale-95"
+          aria-label="Donate Now">
+          Donate Now
+        </button>
+
+        <button
+          (click)="onBecomeMonthlyProtector()"
+          class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-gray-50 text-blue-900 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300 active:scale-95 border-2 border-white"
+          aria-label="Become a Monthly Protector">
+          Become a Monthly Protector
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative wave at bottom -->
+  <div class="absolute bottom-0 left-0 right-0">
+    <svg class="w-full h-12 sm:h-16 md:h-20 text-white fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+    </svg>
+  </div>
+</section>

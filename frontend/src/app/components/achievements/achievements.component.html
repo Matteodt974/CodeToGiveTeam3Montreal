@@ -1,0 +1,145 @@
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        Your Achievements
+      </h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Every action you take helps create safer communities. Track your impact and unlock achievements.
+      </p>
+    </div>
+
+    <!-- User Stats Summary -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+      <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center">
+        <div class="text-3xl font-bold text-red-600 mb-2">
+          {{ userProfile.totalDonated | currency }}
+        </div>
+        <div class="text-sm text-gray-600 font-medium">Total Donated</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center">
+        <div class="text-3xl font-bold text-blue-600 mb-2">
+          {{ userProfile.familiesHelped }}
+        </div>
+        <div class="text-sm text-gray-600 font-medium">Families Helped</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center">
+        <div class="text-3xl font-bold text-green-600 mb-2">
+          {{ userProfile.donationCount }}
+        </div>
+        <div class="text-sm text-gray-600 font-medium">Donations Made</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center">
+        <div class="text-3xl font-bold text-purple-600 mb-2">
+          {{ userProfile.achievements.length }}
+        </div>
+        <div class="text-sm text-gray-600 font-medium">Achievements</div>
+      </div>
+    </div>
+
+    <!-- Achievements Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div
+        *ngFor="let achievement of achievements"
+        [id]="'achievement-' + achievement.id"
+        class="achievement-card bg-white rounded-xl p-6 shadow-sm border-2 transition-all duration-300 hover:shadow-md"
+        [class.locked]="!isUnlocked(achievement.id)"
+        [class.unlocked]="isUnlocked(achievement.id)"
+        [attr.aria-label]="achievement.title + ': ' + achievement.description"
+        role="article"
+      >
+        <!-- Achievement Icon -->
+        <div class="text-center mb-4">
+          <span
+            class="text-6xl inline-block transition-transform duration-300"
+            [class.grayscale]="!isUnlocked(achievement.id)"
+            [class.opacity-50]="!isUnlocked(achievement.id)"
+            [class.scale-110]="isUnlocked(achievement.id)"
+          >
+            {{ achievement.icon }}
+          </span>
+        </div>
+
+        <!-- Achievement Title -->
+        <h3
+          class="text-lg font-bold text-center mb-2"
+          [class.text-gray-900]="isUnlocked(achievement.id)"
+          [class.text-gray-500]="!isUnlocked(achievement.id)"
+        >
+          {{ achievement.title }}
+        </h3>
+
+        <!-- Achievement Description -->
+        <p
+          class="text-sm text-center mb-4"
+          [class.text-gray-600]="isUnlocked(achievement.id)"
+          [class.text-gray-400]="!isUnlocked(achievement.id)"
+        >
+          {{ achievement.description }}
+        </p>
+
+        <!-- Progress Bar -->
+        <div class="relative w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+          <div
+            class="absolute top-0 left-0 h-full transition-all duration-500 ease-out rounded-full"
+            [class.bg-gradient-to-r]="isUnlocked(achievement.id)"
+            [class.from-blue-500]="isUnlocked(achievement.id)"
+            [class.to-purple-600]="isUnlocked(achievement.id)"
+            [class.bg-gray-300]="!isUnlocked(achievement.id)"
+            [style.width.%]="getProgress(achievement.id)"
+            role="progressbar"
+            [attr.aria-valuenow]="getProgress(achievement.id)"
+            [attr.aria-valuemin]="0"
+            [attr.aria-valuemax]="100"
+          ></div>
+        </div>
+
+        <!-- Status Badge -->
+        <div class="mt-4 text-center">
+          <span
+            *ngIf="isUnlocked(achievement.id)"
+            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800"
+          >
+            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            Unlocked
+          </span>
+          <span
+            *ngIf="!isUnlocked(achievement.id)"
+            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600"
+          >
+            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+            </svg>
+            Locked
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div
+      *ngIf="userProfile.achievements.length === 0"
+      class="text-center py-12"
+    >
+      <div class="text-6xl mb-4">🎯</div>
+      <h3 class="text-xl font-semibold text-gray-900 mb-2">
+        Start Your Journey
+      </h3>
+      <p class="text-gray-600 mb-6">
+        Make your first donation to unlock achievements and track your impact!
+      </p>
+      <button
+        (click)="scrollToDonation()"
+        class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-semibold rounded-full hover:bg-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+      >
+        Make First Donation
+      </button>
+    </div>
+  </div>
+</section>

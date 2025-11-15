@@ -1,0 +1,46 @@
+/* Additional custom styles if needed beyond Tailwind */
+:host {
+  display: block;
+}
+
+/* Smooth transitions for rank badges */
+.bg-gradient-to-br {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Custom scrollbar for long lists */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Accessibility improvements */
+button:focus-visible,
+[role="tab"]:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .text-4xl {
+    font-size: 2rem;
+  }
+
+  .text-2xl {
+    font-size: 1.5rem;
+  }
+}

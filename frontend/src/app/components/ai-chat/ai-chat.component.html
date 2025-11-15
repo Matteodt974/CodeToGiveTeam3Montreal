@@ -1,0 +1,186 @@
+<div class="flex flex-col h-full bg-white rounded-lg shadow-xl max-w-md w-full">
+  <!-- Header -->
+  <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4 rounded-t-lg">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <mat-icon class="text-3xl">smart_toy</mat-icon>
+        <div>
+          <h3 class="font-bold text-lg">AI Voice Assistant</h3>
+          <p class="text-sm text-blue-100">Get instant help with donations and questions</p>
+        </div>
+      </div>
+      <button
+        mat-icon-button
+        (click)="closeChat()"
+        class="text-white hover:bg-blue-800 rounded-full transition-colors"
+        aria-label="Close chat">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat Options (when no option selected) -->
+  <div *ngIf="!selectedOption" class="flex-1 p-6 space-y-4">
+    <div
+      class="border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all group"
+      (click)="selectOption('phone')"
+      role="button"
+      tabindex="0"
+      (keydown.enter)="selectOption('phone')"
+      (keydown.space)="selectOption('phone')">
+      <div class="flex items-start gap-4">
+        <mat-icon class="text-4xl text-blue-600 group-hover:scale-110 transition-transform">phone</mat-icon>
+        <div class="flex-1">
+          <h4 class="font-bold text-lg text-gray-800 mb-2">Call Our AI Assistant</h4>
+          <p class="text-gray-600 text-sm">Speak directly with our AI voice assistant for immediate help</p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all group"
+      (click)="selectOption('online')"
+      role="button"
+      tabindex="0"
+      (keydown.enter)="selectOption('online')"
+      (keydown.space)="selectOption('online')">
+      <div class="flex items-start gap-4">
+        <mat-icon class="text-4xl text-blue-600 group-hover:scale-110 transition-transform">chat</mat-icon>
+        <div class="flex-1">
+          <h4 class="font-bold text-lg text-gray-800 mb-2">Chat Online</h4>
+          <p class="text-gray-600 text-sm">Type your questions and get instant AI-powered responses</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phone Option Content -->
+  <div *ngIf="selectedOption === 'phone'" class="flex-1 p-6 flex flex-col">
+    <button
+      mat-icon-button
+      (click)="goBack()"
+      class="self-start mb-4 hover:bg-gray-100 rounded-full"
+      aria-label="Go back">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <div class="flex-1 flex flex-col items-center justify-center text-center space-y-6">
+      <mat-icon class="text-6xl text-blue-600">support_agent</mat-icon>
+      <h3 class="text-2xl font-bold text-gray-800">AI Voice Assistant</h3>
+
+      <div class="bg-blue-50 rounded-xl p-4 w-full">
+        <a
+          href="tel:1-800-284-3621"
+          class="text-3xl font-bold text-blue-600 hover:text-blue-700 transition-colors block">
+          1-800-ATHENA-1
+        </a>
+        <p class="text-sm text-gray-600 mt-2">Available 24/7 • AI-Powered Support</p>
+      </div>
+
+      <p class="text-gray-600 text-sm leading-relaxed max-w-sm">
+        Our AI voice assistant can help with donations, program information, volunteer opportunities,
+        and general questions. For crisis support, you'll be transferred to a human counselor.
+      </p>
+
+      <a
+        href="tel:1-800-284-3621"
+        mat-raised-button
+        color="primary"
+        class="w-full sm:w-auto text-lg py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-shadow">
+        <mat-icon class="mr-2">phone</mat-icon>
+        Call Now
+      </a>
+    </div>
+  </div>
+
+  <!-- Online Chat Content -->
+  <div *ngIf="selectedOption === 'online'" class="flex-1 flex flex-col">
+    <div class="p-4 border-b border-gray-200">
+      <button
+        mat-icon-button
+        (click)="goBack()"
+        class="hover:bg-gray-100 rounded-full"
+        aria-label="Go back">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+
+    <!-- Messages Area -->
+    <div
+      #messagesContainer
+      class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50"
+      role="log"
+      aria-live="polite"
+      aria-atomic="false">
+      <div
+        *ngFor="let message of messages"
+        class="flex"
+        [ngClass]="message.sender === 'user' ? 'justify-end' : 'justify-start'">
+        <div
+          class="max-w-[80%] rounded-2xl px-4 py-3 shadow-sm"
+          [ngClass]="{
+            'bg-blue-600 text-white': message.sender === 'user',
+            'bg-white text-gray-800 border border-gray-200': message.sender === 'bot'
+          }">
+          <div *ngIf="message.sender === 'bot'" class="flex items-center gap-2 mb-1">
+            <mat-icon class="text-sm text-blue-600">smart_toy</mat-icon>
+            <span class="text-xs font-semibold text-gray-600">Athena AI</span>
+          </div>
+          <p class="text-sm whitespace-pre-wrap">{{ message.text }}</p>
+          <span class="text-xs opacity-70 block mt-1">{{ message.timestamp | date:'short' }}</span>
+        </div>
+      </div>
+
+      <!-- Typing Indicator -->
+      <div *ngIf="isTyping" class="flex justify-start">
+        <div class="bg-white border border-gray-200 rounded-2xl px-4 py-3 shadow-sm">
+          <div class="flex items-center gap-2">
+            <mat-icon class="text-sm text-blue-600">smart_toy</mat-icon>
+            <div class="flex gap-1">
+              <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+              <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+              <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="p-4 border-t border-gray-200 bg-white rounded-b-lg">
+      <form (ngSubmit)="sendMessage()" class="flex gap-2">
+        <mat-form-field class="flex-1" appearance="outline" subscriptSizing="dynamic">
+          <mat-label>Type your message...</mat-label>
+          <input
+            matInput
+            [(ngModel)]="userInput"
+            name="message"
+            [disabled]="isTyping"
+            autocomplete="off"
+            class="text-sm"
+            #messageInput>
+          <mat-icon matPrefix class="text-gray-400">edit</mat-icon>
+        </mat-form-field>
+        <button
+          mat-fab
+          color="primary"
+          type="submit"
+          [disabled]="!userInput.trim() || isTyping"
+          class="shadow-lg hover:shadow-xl transition-shadow"
+          aria-label="Send message">
+          <mat-icon>send</mat-icon>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer (when no option selected) -->
+  <div *ngIf="!selectedOption" class="p-4 border-t border-gray-200 bg-gray-50 rounded-b-lg">
+    <button
+      mat-stroked-button
+      (click)="closeChat()"
+      class="w-full rounded-full">
+      Close
+    </button>
+  </div>
+</div><p>ai-chat works!</p>

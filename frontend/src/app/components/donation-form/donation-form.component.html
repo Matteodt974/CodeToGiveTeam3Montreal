@@ -1,0 +1,272 @@
+<div class="w-full max-w-4xl mx-auto p-6">
+  <!-- Donation Amount Selection -->
+  <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+    <h2 class="text-3xl font-bold text-gray-900 mb-2">Make Your Impact</h2>
+    <p class="text-gray-600 mb-8">Choose an amount or enter a custom donation</p>
+
+    <!-- Preset Amount Buttons -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <button
+        *ngFor="let amount of presetAmounts"
+        (click)="selectAmount(amount)"
+        [class.ring-4]="selectedAmount === amount"
+        [class.ring-red-500]="selectedAmount === amount"
+        [class.bg-red-50]="selectedAmount === amount"
+        class="relative p-6 rounded-xl border-2 border-gray-200 hover:border-red-400 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-red-500"
+        [attr.aria-pressed]="selectedAmount === amount"
+        [attr.aria-label]="'Donate ' + amount + ' dollars'">
+        <div class="text-2xl font-bold text-gray-900">${{amount}}</div>
+        <div class="text-sm text-gray-600 mt-1">{{getImpactText(amount)}}</div>
+        <div *ngIf="selectedAmount === amount"
+             class="absolute top-2 right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center"
+             aria-hidden="true">
+          <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+      </button>
+    </div>
+
+    <!-- Custom Amount Input -->
+    <div class="mb-6">
+      <label for="customAmount" class="block text-sm font-semibold text-gray-700 mb-2">
+        Or enter a custom amount
+      </label>
+      <div class="relative">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xl font-semibold">$</span>
+        <input
+          type="number"
+          id="customAmount"
+          [(ngModel)]="customAmount"
+          (input)="onCustomAmountChange()"
+          min="1"
+          step="1"
+          class="w-full pl-10 pr-4 py-4 text-xl font-semibold border-2 border-gray-300 rounded-xl focus:border-red-500 focus:ring-4 focus:ring-red-200 outline-none transition-all"
+          placeholder="Enter amount"
+          aria-label="Custom donation amount in dollars">
+      </div>
+    </div>
+
+    <!-- Recurring Donation Toggle -->
+    <div class="flex items-center justify-between p-4 bg-blue-50 rounded-xl border-2 border-blue-200 mb-6">
+      <div class="flex-1">
+        <label for="recurringToggle" class="font-semibold text-gray-900 cursor-pointer">
+          Make this a monthly donation
+        </label>
+        <p class="text-sm text-gray-600 mt-1">Provide ongoing support to families in need</p>
+      </div>
+      <button
+        type="button"
+        id="recurringToggle"
+        role="switch"
+        [attr.aria-checked]="isRecurring"
+        (click)="toggleRecurring()"
+        [class.bg-blue-600]="isRecurring"
+        [class.bg-gray-300]="!isRecurring"
+        class="relative inline-flex h-8 w-14 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-4 focus:ring-blue-500">
+        <span
+          [class.translate-x-7]="isRecurring"
+          [class.translate-x-1]="!isRecurring"
+          class="pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out mt-1">
+        </span>
+      </button>
+    </div>
+
+    <!-- Impact Display -->
+    <div *ngIf="selectedAmount > 0"
+         class="p-6 bg-gradient-to-r from-red-50 to-pink-50 rounded-xl border-2 border-red-200"
+         role="status"
+         aria-live="polite">
+      <div class="flex items-start gap-3">
+        <div class="text-3xl" aria-hidden="true">🛡️</div>
+        <div class="flex-1">
+          <h3 class="font-bold text-gray-900 text-lg mb-2">Your Impact</h3>
+          <p class="text-gray-700">
+            Your {{isRecurring ? 'monthly' : ''}} donation of
+            <span class="font-bold text-red-600">${{selectedAmount}}</span>
+            will {{getDetailedImpact()}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Donor Information Form -->
+  <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Your Information</h2>
+
+    <form [formGroup]="donorForm" (ngSubmit)="submitDonation()">
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <!-- First Name -->
+        <div>
+          <label for="firstName" class="block text-sm font-semibold text-gray-700 mb-2">
+            First Name <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            formControlName="firstName"
+            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:ring-4 focus:ring-red-200 outline-none transition-all"
+            [class.border-red-500]="donorForm.get('firstName')?.invalid && donorForm.get('firstName')?.touched"
+            aria-required="true"
+            aria-describedby="firstName-error">
+          <p *ngIf="donorForm.get('firstName')?.invalid && donorForm.get('firstName')?.touched"
+             id="firstName-error"
+             class="mt-1 text-sm text-red-600">
+            First name is required
+          </p>
+        </div>
+
+        <!-- Last Name -->
+        <div>
+          <label for="lastName" class="block text-sm font-semibold text-gray-700 mb-2">
+            Last Name <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:ring-4 focus:ring-red-200 outline-none transition-all"
+            [class.border-red-500]="donorForm.get('lastName')?.invalid && donorForm.get('lastName')?.touched"
+            aria-required="true"
+            aria-describedby="lastName-error">
+          <p *ngIf="donorForm.get('lastName')?.invalid && donorForm.get('lastName')?.touched"
+             id="lastName-error"
+             class="mt-1 text-sm text-red-600">
+            Last name is required
+          </p>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-6">
+        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+          Email Address <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:ring-4 focus:ring-red-200 outline-none transition-all"
+          [class.border-red-500]="donorForm.get('email')?.invalid && donorForm.get('email')?.touched"
+          aria-required="true"
+          aria-describedby="email-error">
+        <p *ngIf="donorForm.get('email')?.invalid && donorForm.get('email')?.touched"
+           id="email-error"
+           class="mt-1 text-sm text-red-600">
+          Please enter a valid email address
+        </p>
+      </div>
+
+      <!-- Phone (Optional) -->
+      <div class="mb-6">
+        <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">
+          Phone Number (Optional)
+        </label>
+        <input
+          type="tel"
+          id="phone"
+          formControlName="phone"
+          class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:ring-4 focus:ring-red-200 outline-none transition-all"
+          aria-describedby="phone-help">
+        <p id="phone-help" class="mt-1 text-sm text-gray-600">
+          We'll only use this for donation receipts
+        </p>
+      </div>
+
+      <!-- Anonymous Donation -->
+      <div class="flex items-center gap-3 mb-6">
+        <input
+          type="checkbox"
+          id="anonymous"
+          formControlName="anonymous"
+          class="w-5 h-5 text-red-600 border-2 border-gray-300 rounded focus:ring-4 focus:ring-red-200 cursor-pointer">
+        <label for="anonymous" class="text-gray-700 font-medium cursor-pointer">
+          Make my donation anonymous
+        </label>
+      </div>
+
+      <!-- Payment Information -->
+      <div class="border-t-2 border-gray-200 pt-6 mb-6">
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Payment Information</h3>
+        <div class="p-4 bg-yellow-50 border-2 border-yellow-200 rounded-lg mb-6">
+          <p class="text-sm text-yellow-800 flex items-start gap-2">
+            <span class="text-xl" aria-hidden="true">⚠️</span>
+            <span>Demo Version - No actual payment processing. In production, this would integrate with Stripe or another payment processor.</span>
+          </p>
+        </div>
+
+        <!-- Card Number -->
+        <div class="mb-4">
+          <label for="cardNumber" class="block text-sm font-semibold text-gray-700 mb-2">
+            Card Number <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="cardNumber"
+            formControlName="cardNumber"
+            placeholder="1234 5678 9012 3456"
+            maxlength="19"
+            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:ring-4 focus:ring-red-200 outline-none transition-all font-mono"
+            [class.border-red-500]="donorForm.get('cardNumber')?.invalid && donorForm.get('cardNumber')?.touched"
+            aria-required="true">
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <!-- Expiry Date -->
+          <div>
+            <label for="expiryDate" class="block text-sm font-semibold text-gray-700 mb-2">
+              Expiry Date <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="expiryDate"
+              formControlName="expiryDate"
+              placeholder="MM/YY"
+              maxlength="5"
+              class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:ring-4 focus:ring-red-200 outline-none transition-all font-mono"
+              aria-required="true">
+          </div>
+
+          <!-- CVV -->
+          <div>
+            <label for="cvv" class="block text-sm font-semibold text-gray-700 mb-2">
+              CVV <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="cvv"
+              formControlName="cvv"
+              placeholder="123"
+              maxlength="4"
+              class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 focus:ring-4 focus:ring-red-200 outline-none transition-all font-mono"
+              aria-required="true">
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        [disabled]="!donorForm.valid || selectedAmount === 0 || isProcessing"
+        [class.opacity-50]="!donorForm.valid || selectedAmount === 0 || isProcessing"
+        [class.cursor-not-allowed]="!donorForm.valid || selectedAmount === 0 || isProcessing"
+        class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-red-500 disabled:hover:bg-red-600 text-lg">
+        <span *ngIf="!isProcessing">
+          🛡️ Complete Donation of ${{selectedAmount}}{{isRecurring ? '/month' : ''}}
+        </span>
+        <span *ngIf="isProcessing" class="flex items-center justify-center gap-2">
+          <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Processing...
+        </span>
+      </button>
+
+      <p class="text-center text-sm text-gray-600 mt-4">
+        🔒 Your payment information is secure and encrypted
+      </p>
+    </form>
+  </div>
+</div>

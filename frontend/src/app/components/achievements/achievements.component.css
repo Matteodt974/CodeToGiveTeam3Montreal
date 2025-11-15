@@ -1,0 +1,111 @@
+/* Achievement Card Animations */
+.achievement-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.achievement-card.locked {
+  @apply border-gray-200 bg-gray-50;
+}
+
+.achievement-card.unlocked {
+  @apply border-green-200 bg-gradient-to-br from-white to-green-50;
+  animation: unlock-pulse 0.6s ease-out;
+}
+
+.achievement-card.unlocked::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: shimmer 2s infinite;
+}
+
+/* Hover Effects */
+.achievement-card:hover {
+  @apply transform -translate-y-1;
+}
+
+.achievement-card.unlocked:hover {
+  @apply shadow-xl;
+}
+
+/* Icon Effects */
+.achievement-card.unlocked .text-6xl {
+  animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Animations */
+@keyframes unlock-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Grayscale Filter */
+.grayscale {
+  filter: grayscale(100%);
+}
+
+/* Progress Bar Animation */
+.achievement-card .h-2 > div {
+  transition: width 0.5s ease-out;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .achievement-card {
+    @apply p-4;
+  }
+
+  .achievement-card .text-6xl {
+    @apply text-5xl;
+  }
+}
+
+/* Accessibility: Focus Styles */
+.achievement-card:focus-within {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+}
+
+/* Print Styles */
+@media print {
+  .achievement-card {
+    @apply break-inside-avoid;
+  }
+}
