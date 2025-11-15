@@ -57,6 +57,5 @@ public class DonationEventService {
         );
     }
 
-    @Getter
-        public record DonationEventPublished(Long eventId) { }
+    public record DonationEventPublished(Long eventId) { }
 }

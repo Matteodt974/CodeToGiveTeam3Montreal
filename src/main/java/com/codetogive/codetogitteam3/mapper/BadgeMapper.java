@@ -25,7 +25,7 @@ public class BadgeMapper {
         return Badge.builder()
                 .name(dto.name())
                 .description(dto.description())
-                .iconUrl(dto.icon())
+                .icon(dto.icon())
                 .build();
     }
 
@@ -37,7 +37,7 @@ public class BadgeMapper {
             badge.setDescription(dto.description());
         }
         if (dto.icon() != null) {
-            badge.setIconUrl(dto.icon());
+            badge.setIcon(dto.icon());
         }
     }
 }
