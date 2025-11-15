@@ -47,3 +47,52 @@ button:focus-visible {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
 }
+
+/* Journey Timeline Container Constraints */
+.journey-timeline-container {
+  max-width: 80vw;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+/* Ensure cards don't exceed container */
+.bg-white.rounded-xl {
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Prevent grid from overflowing */
+.md\:grid.md\:grid-cols-2 {
+  max-width: 100%;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .md\:grid.md\:grid-cols-2 {
+    gap: 2rem;
+  }
+}
+
+/* Constrain max-width cards */
+.max-w-md {
+  max-width: calc(40vw - 4rem);
+}
+
+@media (max-width: 768px) {
+  .max-w-md {
+    max-width: calc(80vw - 2rem);
+  }
+}
+
+/* Fix vertical line positioning */
+.absolute.left-1\/2 {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Ensure icons stay centered */
+.hidden.md\:flex.absolute {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
