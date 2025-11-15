@@ -26,18 +26,28 @@ public class Subscription {
     private User user;
 
     @NotNull
+    @Column(nullable = false)
+    private String email;
+
+    @NotNull
     @Column(precision = 10, scale = 2)
-    private BigDecimal amount;
+    private double amount;
+
+    @Enumerated(EnumType.STRING) @Column(nullable = false)
+    private Tier tier;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
-    private SubscriptionStatus status;
+    @Column(nullable = false)
+    private Status status;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    @Column(name = "started_at")
+    private LocalDateTime startedAt;
 
     @Column(name = "canceled_at")
     private LocalDateTime canceledAt;
+
+    @Column(nullable = false)
+    private double cumulativeTotal;
 
     @OneToMany(mappedBy = "subscription", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transaction> transactions = new ArrayList<>();
@@ -45,15 +55,19 @@ public class Subscription {
 
     //region Constructor
     @Builder
-    public Subscription(User user, BigDecimal amount, SubscriptionStatus status) {
+    public Subscription(User user, double amount, Status status) {
         this.user = user;
         this.amount = amount;
         this.status = status;
     }
     //endregion
 
+    public enum Tier { GARDIEN, PROTECTEUR, CHAMPION, PILIER }
+    public enum Status { ACTIVE, CANCELED }
+
     @PrePersist
     protected void onCreate() {
-        if(this.createdAt == null) this.createdAt = LocalDateTime.now();
+        if (status == null) status = Status.ACTIVE;
+        if(this.startedAt == null) this.startedAt = LocalDateTime.now();
     }
 }
