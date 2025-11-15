@@ -14,7 +14,7 @@ public class SubscriptionMapper {
                 sub.getUser() != null ? sub.getUser().getId() : null,
                 sub.getAmount(),
                 sub.getStatus(),
-                sub.getCreatedAt(),
+                sub.getStartedAt(),
                 sub.getCanceledAt()
         );
     }
