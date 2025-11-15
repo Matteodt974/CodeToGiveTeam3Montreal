@@ -9,7 +9,7 @@
       <h3 *ngIf="earnedBadges.length > 0">Badges Obtenus</h3>
       <div class="badges-grid">
         @for (badge of earnedBadges; track badge.id) {
-        <div class="badge earned" [style.background-color]="badge.color">
+        <div class="badge earned">
           <span class="badge-icon">{{ badge.icon }}</span>
           <span class="badge-name">{{ badge.name }}</span>
           <span class="badge-description">{{ badge.description }}</span>

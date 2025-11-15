@@ -1,7 +1,8 @@
 .badges-container {
   padding: 20px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  border-radius: 8px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 3px solid #003366;
   margin: 20px 0;
 }
 
@@ -24,6 +25,8 @@
 
 .earned-badges h3,
 .next-badge h3 {
+  font-weight: 600;
+  font-size: 1.2rem;
   color: #333;
   margin-top: 20px;
   margin-bottom: 15px;
@@ -43,7 +46,7 @@
   justify-content: center;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px #0259b0;
   transition: transform 0.3s ease;
   cursor: pointer;
 }
@@ -59,15 +62,15 @@
 }
 
 .badge-name {
-  font-weight: bold;
-  color: white;
+  font-weight: 700;
+  color: #333;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   margin-bottom: 8px;
 }
 
 .badge-description {
   font-size: 12px;
-  color: white;
+  color: #333;
   text-align: center;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
