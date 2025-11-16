@@ -19,33 +19,27 @@ export class QuizGameComponent implements OnInit {
   questions: QuizQuestion[] = [
     {
       id: 1,
-      question: 'Quelle est la capitale de la France?',
-      options: ['Berlin', 'Madrid', 'Paris', 'Rome'],
-      correctAnswer: 2
-    },
-    {
-      id: 2,
-      question: 'Combien de continents y a-t-il sur Terre?',
-      options: ['5', '6', '7', '8'],
-      correctAnswer: 2
-    },
-    {
-      id: 3,
-      question: 'Quel est le plus grand océan du monde?',
-      options: ['Océan Atlantique', 'Océan Pacifique', 'Océan Indien', 'Océan Arctique'],
+      question: 'About what percentage of the population has experienced intimate partner violence in their lifetime?',
+      options: ['19%', '29%', '39%', '49%'],
       correctAnswer: 1
     },
     {
-      id: 4,
-      question: 'En quelle année a eu lieu la Révolution française?',
-      options: ['1789', '1776', '1804', '1815'],
-      correctAnswer: 0
+      id: 2,
+      question: 'Which of these factors significantly increases the risk of intimate partner homicide or familicide when domestic violence is present?',
+      options: ['Strangulation', 'Stalking', 'Access to firearms', 'All of the above'],
+      correctAnswer: 3
     },
     {
-      id: 5,
-      question: 'Quelle planète est connue comme la planète rouge?',
-      options: ['Vénus', 'Jupiter', 'Mars', 'Saturne'],
-      correctAnswer: 2
+      id: 3,
+      question: 'What percentage of domestic violence cases include financial abuse?',
+      options: ['Less than 30%', 'Less than 50%', 'About 75%', 'Over 95%'],
+      correctAnswer: 3
+    },
+    {
+      id: 4,
+      question: 'How many survivors delay leaving an abusive relationship because they\'re afraid of being separated from their pets?',
+      options: ['1 in 3', '1 in 5', '1 in 7', '1 in 10'],
+      correctAnswer: 1
     }
   ];
 

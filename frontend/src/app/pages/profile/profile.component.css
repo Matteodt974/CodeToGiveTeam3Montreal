@@ -1,0 +1,227 @@
+.profile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* En-tête du profil */
+.profile-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.profile-header h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #003366;
+  margin: 0;
+}
+
+/* Section Montant Total */
+.total-donation-section {
+  margin-bottom: 60px;
+}
+
+.donation-card {
+  background: linear-gradient(135deg, #003366 0%, #0066cc 100%);
+  border-radius: 16px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  box-shadow: 0 8px 24px rgba(0, 51, 102, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.donation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 51, 102, 0.4);
+}
+
+.donation-icon {
+  font-size: 5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.donation-details {
+  flex: 1;
+  color: #ffffff;
+}
+
+.donation-details h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  color: #ffffff;
+}
+
+.donation-amount {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 10px 0;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.donation-count {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 5px 0 0 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Section Badges */
+.badges-section {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 3px solid #003366;
+  padding: 40px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.badges-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #003366;
+  margin: 0 0 40px 0;
+  text-align: center;
+}
+
+.earned-badges {
+  margin-bottom: 20px;
+}
+
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 25px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 102, 204, 0.3), 0 2px 8px rgba(0, 51, 102, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.badge:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.5), 0 4px 12px rgba(0, 51, 102, 0.3);
+  background: #e6f3ff;
+}
+
+.badge-icon {
+  font-size: 4rem;
+  margin-bottom: 15px;
+}
+
+.badge-name {
+  font-weight: 700;
+  color: #003366;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.badge-description {
+  font-size: 1.3rem;
+  color: #333333;
+  text-align: center;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.no-badges {
+  text-align: center;
+  padding: 60px 40px;
+  color: #333333;
+  font-size: 1.4rem;
+  font-weight: 600;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 3px solid #0066cc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 30px 15px;
+  }
+
+  .profile-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .donation-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 25px;
+    gap: 20px;
+  }
+
+  .donation-icon {
+    font-size: 4rem;
+    width: 100px;
+    height: 100px;
+  }
+
+  .donation-details h2 {
+    font-size: 1.5rem;
+  }
+
+  .donation-amount {
+    font-size: 2.5rem;
+  }
+
+  .donation-count {
+    font-size: 1.1rem;
+  }
+
+  .badges-section {
+    padding: 30px 20px;
+  }
+
+  .badges-section h2 {
+    font-size: 2rem;
+  }
+
+  .badges-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .badge {
+    padding: 20px 15px;
+  }
+
+  .badge-icon {
+    font-size: 3rem;
+  }
+
+  .badge-name {
+    font-size: 1.3rem;
+  }
+
+  .badge-description {
+    font-size: 1rem;
+  }
+
+  .no-badges {
+    padding: 40px 20px;
+    font-size: 1.2rem;
+  }
+}

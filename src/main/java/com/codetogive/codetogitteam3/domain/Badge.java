@@ -12,6 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString(exclude = "users")
 public class Badge {
     //region Attributes
     @Id
@@ -25,8 +26,8 @@ public class Badge {
     @Column
     private String description;
 
-    @Column(name = "icon_url")
-    private String iconUrl;
+    @Column
+    private String icon;
 
     @ManyToMany
     @JoinTable(
@@ -39,8 +40,8 @@ public class Badge {
 
     //region Constructor
     @Builder
-    public Badge(String name, String description, String iconUrl) {
-        this.iconUrl = iconUrl;
+    public Badge(String name, String description, String icon) {
+        this.icon = icon;
         this.name = name;
         this.description = description;
     }

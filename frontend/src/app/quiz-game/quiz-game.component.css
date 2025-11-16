@@ -174,7 +174,7 @@
 .option.correct .option-letter,
 .option.wrong .option-letter {
   background: white;
-  color: #333;
+  color: whitesmoke;
 }
 
 .feedback-icon {
@@ -324,7 +324,7 @@
 }
 
 .result-label {
-  color: #666;
+  color: darkslategrey;
   font-size: 0.9em;
 }
 
@@ -339,6 +339,23 @@
 
 .result-value.incorrect {
   color: whitesmoke;
+}
+
+/* Shield Info */
+.shield-info {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+
+.shield-info p {
+  color: white;
+  font-size: 0.95em;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+  font-style: italic;
 }
 
 /* Responsive Design */
