@@ -199,6 +199,88 @@
   line-height: 1.6;
 }
 
+/* Quiz Intro Section */
+.quiz-intro-section {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.quiz-intro-content {
+  position: relative;
+  width: 100%;
+  height: 500px;
+}
+
+.quiz-banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.quiz-intro-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
+
+.quiz-intro-overlay h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.quiz-intro-overlay p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.btn-take-quiz {
+  padding: 15px 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-take-quiz:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.btn-take-quiz:active {
+  transform: translateY(-1px);
+}
+
+#quiz-section {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hero-title {
@@ -222,4 +304,68 @@
   .steps-grid {
     grid-template-columns: 1fr;
   }
+
+  .quiz-intro-content {
+    height: 400px;
+  }
+
+  .quiz-intro-overlay h2 {
+    font-size: 1.8rem;
+  }
+
+  .quiz-intro-overlay p {
+    font-size: 1.1rem;
+  }
+
+  .btn-take-quiz {
+    padding: 12px 35px;
+    font-size: 1rem;
+  }
 }
+
+/* home.component.css */
+.home-container {
+  width: 100%;
+}
+
+.section-wrapper {
+  width: 100%;
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.section-wrapper.bg-white {
+  background-color: #ffffff;
+}
+
+.section-wrapper.bg-gray {
+  background-color: #f7f7f7;
+}
+
+.section-content {
+  width: 70%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .section-content {
+    width: 85%;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-content {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-content {
+    width: 95%;
+  }
+}
+
+

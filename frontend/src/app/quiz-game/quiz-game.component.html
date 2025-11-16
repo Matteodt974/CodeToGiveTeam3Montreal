@@ -63,7 +63,7 @@
         *ngIf="answerSubmitted"
         class="btn btn-primary"
         (click)="nextQuestion()">
-        {{ currentQuestionIndex === questions.length - 1 ? 'See results' : 'NextT →' }}
+        {{ currentQuestionIndex === questions.length - 1 ? 'See results' : 'Next →' }}
       </button>
     </div>
   </div>
@@ -89,8 +89,12 @@
         </div>
       </div>
 
+      <div class="shield-info">
+        <p>The Shield of Athenas provides professional support, Culturally and linguistically adapted interventions and prevention to the needs of women victims of family and/or conjugal violence and their children, as well as members of ethnocultural communities.</p>
+      </div>
+
       <button class="btn btn-primary" (click)="restartQuiz()">
-        Retake the Quiz?
+        Restart ?
       </button>
     </div>
   </div>
