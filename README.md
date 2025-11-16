@@ -28,38 +28,39 @@ Morgan Stanley Code To Give 2025 \- Hackathon
 Athena House is a platform to support donors, recurring subscriptions, quiz\-based awareness, gamified badges, donation events, timeline aggregation, and assistant interaction.
 
 ## 2. Architecture
-\* Backend: Spring Boot (REST, JPA, Security, Mail, Scheduling)  
-\* Frontend: Angular SPA (TypeScript, Routing, Services)  
-\* Persistence: Relational DB (e.g. PostgreSQL) via JPA  
-\* Containerization: Docker / Docker Compose  
-\* Security: API Key filter (can evolve to JWT/OAuth2)  
-\* Messaging: Spring events for email notifications
+* Backend: Spring Boot (REST, JPA, Security, Mail, Scheduling)  
+* Frontend: Angular SPA (TypeScript, Routing, Services)  
+* Persistence: Relational DB (e.g. PostgreSQL) via JPA  
+* Containerization: Docker / Docker Compose  
+* Security: API Key filter (can evolve to JWT/OAuth2)  
+* Messaging: Spring events for email notifications
 
 ## 3. Features
-\* Quiz engine (questions, scoring, badge assignment)  
-\* Donation events (goal tracking, progress, notifications)  
-\* One\-time donations and recurring subscriptions (milestones)  
-\* Badge system (achievement and empathy progression)  
-\* Online AI assistant for user support
-\* Email notifications on event publication  
-\* API key protected mutations
+* Quiz engine (questions, scoring, badge assignment)  
+* Donation events (goal tracking, progress, notifications)  
+* One\-time donations and recurring subscriptions (milestones)  
+* Badge system (achievement and empathy progression)  
+* Online AI assistant for user support
+* Email notifications on event publication  
+* API key protected mutations
 
 ## 4. Tech Stack
-\* Java 21+, Spring Boot  
-\* Maven  
-\* Angular 17+  
-\* TypeScript  
-\* Docker / Docker Compose  
-\* MailHog (dev mail capture)  
-\* MySQL
-\* n8n
+* Java 21+
+* Spring Boot  
+* Maven  
+* Angular 17+  
+* TypeScript  
+* Docker / Docker Compose  
+* MailHog (dev mail capture)  
+* MySQL
+* n8n
 
 ## 5. Prerequisites
-\* Java 21 (JDK)  
-\* Maven  
-\* npm  
-\* Docker / Docker Compose  
-\* Git
+* Java 21 (JDK)  
+* Maven  
+* npm  
+* Docker / Docker Compose  
+* Git
 
 ## 6. Getting Started
 Clone the repository.
@@ -70,30 +71,27 @@ Primary development workflow with Docker Compose (rebuilds images, resets volume
   docker compose down -v && docker compose up --build
 ```
 ## 8. API Overview
-\* Public GET endpoints for reading resources.  
-\* Mutations (POST/PUT/DELETE) require `X-API-KEY`.  
-\* Core paths:  
-\- `/api/quiz/**`  
-\- `/api/events/**`  
-\- `/api/subscriptions/**`  
-\- `/api/timeline/**`  
-\- `/api/assistant/**`
+* Public GET endpoints for reading resources.  
+* Mutations (POST/PUT/DELETE) require `X-API-KEY`.  
+* Core paths:  
+- `/api/quiz/**`  
+- `/api/events/**`  
+- `/api/subscriptions/**`
 
 ## 9. Frontend Overview
-\* Angular routes map to quiz, events, subscription, timeline, assistant components.  
-\* Centralized `ApiService` handles HTTP calls and API key injection.
+* Angular routes map to quiz, events, subscription, timeline, assistant components.  
+* Centralized `ApiService` handles HTTP calls and API key injection.
 
 ## 10. Security
-\* Custom `ApiKeyAuthFilter` blocks mutations without valid key.  
+* Custom `ApiKeyAuthFilter` blocks mutations without valid key.  
 
 ## 11. Directory Structure
-\* `backend/` Spring Boot source (`src/main/java/...`)  
-\* `frontend/` Angular application  
-\* `requests.http` Sample API calls
-
+* `backend/` Spring Boot source (`src/main/java/...`)  
+* `frontend/` Angular application  
+* `requests.http` Sample API calls
 
 ## 12. Deployment 
-\* Containerized deployment via Docker Compose .  
+* Containerized deployment via Docker Compose .  
 
 ## 13. TEAM 3 \- Authors
 Grouped by role (all members from UQAM).
