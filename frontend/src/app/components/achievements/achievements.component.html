@@ -78,7 +78,7 @@
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
       >
         <div
-          *ngFor="let badge of allBadges"
+          *ngFor="let badge of displayBadges"
           [id]="'achievement-' + badge.id"
           class="achievement-card bg-white rounded-xl p-6 shadow-sm border-2 transition-all duration-300 hover:shadow-md"
           [class.locked]="!isUnlocked(badge.id)"
@@ -116,6 +116,14 @@
             {{ badge.description }}
           </p>
 
+          <!-- Progress Text for Cumulative Badges -->
+          <p
+            *ngIf="getProgressText(badge)"
+            class="text-xs text-center mb-2 font-medium text-blue-600"
+          >
+            {{ getProgressText(badge) }}
+          </p>
+
           <!-- Progress Bar -->
           <div
             class="relative w-full h-2 bg-gray-200 rounded-full overflow-hidden"
@@ -125,7 +133,8 @@
               [class.bg-gradient-to-r]="isUnlocked(badge.id)"
               [class.from-blue-500]="isUnlocked(badge.id)"
               [class.to-purple-600]="isUnlocked(badge.id)"
-              [class.bg-gray-300]="!isUnlocked(badge.id)"
+              [class.bg-blue-400]="!isUnlocked(badge.id) && getProgress(badge) > 0"
+              [class.bg-gray-300]="!isUnlocked(badge.id) && getProgress(badge) === 0"
               [style.width.%]="getProgress(badge)"
               role="progressbar"
               [attr.aria-valuenow]="getProgress(badge)"
@@ -177,7 +186,7 @@
       </div>
 
       <!-- Empty State (no badges in system) -->
-      <div *ngIf="allBadges.length === 0" class="text-center py-12">
+      <div *ngIf="displayBadges.length === 0" class="text-center py-12">
         <div class="text-6xl mb-4">🎯</div>
         <h3 class="text-xl font-semibold text-gray-900 mb-2">
           No Achievements Available
@@ -189,7 +198,7 @@
 
       <!-- Call to Action (when user has no badges) -->
       <div
-        *ngIf="allBadges.length > 0 && userBadges.length === 0"
+        *ngIf="displayBadges.length > 0 && userBadges.length === 0"
         class="text-center py-12 mt-8 bg-white rounded-xl shadow-sm border border-gray-200"
       >
         <div class="text-6xl mb-4">🚀</div>
