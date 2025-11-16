@@ -1,11 +1,14 @@
 package com.codetogive.codetogitteam3.dto.event;
 
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public record DonationEventDTO(
         Long id,
-        String name,
+        String title,
         String description,
-        LocalDateTime createdAt
+        double goalAmount,
+        double currentAmount,
+        String startDate,
+        String endDate
 ) {}

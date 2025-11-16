@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.codetogive.codetogitteam3.domain.DonationEvent;
 import com.codetogive.codetogitteam3.repository.DonationEventRepository;
-import lombok.Getter;
 import org.springframework.context.ApplicationEventPublisher;
 
 import java.math.BigDecimal;
@@ -36,7 +35,7 @@ public class DonationEventService {
     }
 
     @Transactional
-    public Transaction donate(Long eventId, String donorName, String email, double amount) {
+    public Transaction donate(Long eventId, String email, double amount) {
         if (amount <= 0) throw new IllegalArgumentException("Montant invalide");
 
         DonationEvent ev = eventRepo.findById(eventId).orElseThrow();
