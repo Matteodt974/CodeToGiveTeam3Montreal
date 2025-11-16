@@ -1,0 +1,40 @@
+.n8n-open-btn {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+.modal-window {
+  position: relative;
+  background: #fff;
+  width: min(900px, 95%);
+  max-height: 90vh;
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 1001;
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 1002;
+}

@@ -45,15 +45,14 @@ Athena House is a platform to support donors, recurring subscriptions, quiz\-bas
 * API key protected mutations
 
 ## 4. Tech Stack
-* Java 21+
-* Spring Boot  
+* Java 21+ / Spring Boot  
 * Maven  
 * Angular 17+  
 * TypeScript  
-* Docker / Docker Compose  
+* Docker 
 * MailHog (dev mail capture)  
 * MySQL
-* n8n
+* n8n workflow
 
 ## 5. Prerequisites
 * Java 21 (JDK)  
