@@ -10,48 +10,50 @@
       <div class="profile-info">
         <h1>{{ user.name }}</h1>
         <p class="user-email">{{ user.email }}</p>
-        <p class="member-since">Membre depuis {{ user.memberSince }}</p>
+        <p class="member-since">Member since {{ user.memberSince }}</p>
         <span class="user-level">{{ user.level }}</span>
       </div>
     </section>
 
     <!-- Stats Overview -->
     <section class="stats-section">
-      <h2>Mes Statistiques</h2>
+      <h2>My stats</h2>
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-icon">💰</div>
-          <div class="stat-value">{{ user.totalDonations | currency:'CAD':'symbol':'1.0-0' }}</div>
-          <div class="stat-label">Total des dons</div>
+          <div class="stat-value">
+            {{ user.totalDonations | currency : "CAD" : "symbol" : "1.0-0" }}
+          </div>
+          <div class="stat-label">Number of donations</div>
         </div>
         <div class="stat-card">
           <div class="stat-icon">🎁</div>
           <div class="stat-value">{{ user.donationCount }}</div>
-          <div class="stat-label">Nombre de dons</div>
+          <div class="stat-label">Total donation amount</div>
         </div>
         <div class="stat-card">
           <div class="stat-icon">🔥</div>
           <div class="stat-value">{{ user.currentStreak }}</div>
-          <div class="stat-label">Série actuelle</div>
+          <div class="stat-label">Streak</div>
         </div>
       </div>
     </section>
 
     <!-- Achievements Section -->
     <section class="section-wrapper">
-      <h2>Mes Réalisations</h2>
+      <h2>My achievements</h2>
       <app-achievements></app-achievements>
     </section>
 
     <!-- Journey Timeline Section -->
     <section class="section-wrapper">
-      <h2>Mon Parcours</h2>
+      <h2>Journey</h2>
       <app-journey-timeline></app-journey-timeline>
     </section>
 
     <!-- Leaderboard Section -->
     <section class="section-wrapper">
-      <h2>Classement</h2>
+      <h2>Leaderboard</h2>
       <app-leaderboard></app-leaderboard>
     </section>
   </div>
