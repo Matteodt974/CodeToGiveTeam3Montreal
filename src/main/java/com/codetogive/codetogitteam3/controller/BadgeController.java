@@ -1,6 +1,7 @@
 package com.codetogive.codetogitteam3.controller;
 
 import com.codetogive.codetogitteam3.dto.badge.BadgeDTO;
+import com.codetogive.codetogitteam3.repository.UserRepository;
 import com.codetogive.codetogitteam3.service.BadgeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BadgeController {
     private final BadgeService badgeService;
+    private final UserRepository userRepository;
 
     @GetMapping
     public ResponseEntity<List<BadgeDTO>> listAll() {
@@ -40,9 +42,13 @@ public class BadgeController {
         return ResponseEntity.ok(badgeService.getBadgesForUser(id));
     }
 
+    // hardcoded user for demo purposes
     @GetMapping("/me")
     public ResponseEntity<List<BadgeDTO>> getMyBadges() {
-        // TODO: Implement method to get badges for the authenticated user, maybe move to UserController
-        return ResponseEntity.ok(List.of());
+        return ResponseEntity.ok(badgeService
+                .getBadgesForUser(
+                        userRepository
+                                .findByEmail("george@test.com")
+                                .get().getId()));
     }
 }
