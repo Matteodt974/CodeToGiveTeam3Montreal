@@ -27,7 +27,7 @@ public class BadgeController {
         return ResponseEntity.ok(badgeService.getById(id));
     }
 
-    @PostMapping("/{id}")
+    @PostMapping
     public ResponseEntity<BadgeDTO> create(@RequestBody @Valid BadgeDTO dto) {
         return ResponseEntity.ok(badgeService.create(dto));
     }
