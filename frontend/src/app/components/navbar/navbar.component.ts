@@ -26,6 +26,11 @@ export class NavbarComponent {
   signupEmail = '';
   signupPassword = '';
   signupConfirmPassword = '';
+  signupPhone = '';
+  signupAddress = '';
+  signupCity = '';
+  signupPostalCode = '';
+  signupCountry = '';
 
   constructor(private router: Router) {}
 
@@ -81,13 +86,23 @@ export class NavbarComponent {
     this.signupEmail = '';
     this.signupPassword = '';
     this.signupConfirmPassword = '';
+    this.signupPhone = '';
+    this.signupAddress = '';
+    this.signupCity = '';
+    this.signupPostalCode = '';
+    this.signupCountry = '';
   }
 
   handleSignup(): void {
     console.log('Signup attempt:', { 
       name: this.signupName, 
       email: this.signupEmail, 
-      password: this.signupPassword 
+      password: this.signupPassword,
+      phone: this.signupPhone,
+      address: this.signupAddress,
+      city: this.signupCity,
+      postalCode: this.signupPostalCode,
+      country: this.signupCountry
     });
     // Simuler l'inscription réussie
     this.isLoggedIn = true;
@@ -103,5 +118,12 @@ export class NavbarComponent {
   switchToLogin(): void {
     this.closeSignupModal();
     this.openLoginModal();
+  }
+
+  // Logout method
+  handleLogout(): void {
+    console.log('User logged out');
+    this.isLoggedIn = false;
+    this.router.navigate(['/']);
   }
 }
