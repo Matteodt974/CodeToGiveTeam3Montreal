@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { forkJoin } from 'rxjs';
 
 interface Badge {
   id: number;
@@ -15,6 +16,14 @@ interface UserProfile {
   familiesHelped: number;
   donationCount: number;
   shareCount: number;
+}
+
+interface Transaction {
+  id: number;
+  userId: number;
+  amount: number;
+  anonymous: boolean;
+  createdAt: string;
 }
 
 @Component({
@@ -50,7 +59,7 @@ export class AchievementsComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.loadUserProfile();
+    this.loadUserStats();
     this.loadBadges();
     console.log(this.currentUserId);
   }
@@ -98,7 +107,36 @@ export class AchievementsComponent implements OnInit {
     console.log(this.userBadgeIds);
   }
 
-  private loadUserProfile(): void {
+  private loadUserStats(): void {
+    // Charger le total donné et les transactions en parallèle
+    forkJoin({
+      totalDonated: this.http.get<number>(
+        `${this.apiBase}/users/${this.currentUserId}/transactions/total`
+      ),
+      transactions: this.http.get<Transaction[]>(
+        `${this.apiBase}/transactions/user/${this.currentUserId}`
+      ),
+    }).subscribe({
+      next: (result) => {
+        this.userProfile.totalDonated = result.totalDonated || 0;
+        console.log('Total Donated:', this.userProfile.totalDonated);
+        this.userProfile.donationCount = result.transactions.length;
+
+        // Sauvegarder dans localStorage pour persistance
+        this.saveUserProfile();
+      },
+      error: (err) => {
+        console.error(
+          'Erreur lors du chargement des statistiques utilisateur:',
+          err
+        );
+        // En cas d'erreur, essayer de charger depuis localStorage
+        this.loadUserProfileFromStorage();
+      },
+    });
+  }
+
+  private loadUserProfileFromStorage(): void {
     const savedProfile = localStorage.getItem('userProfile');
     if (savedProfile) {
       const profile = JSON.parse(savedProfile);
@@ -109,6 +147,10 @@ export class AchievementsComponent implements OnInit {
         shareCount: profile.shareCount || 0,
       };
     }
+  }
+
+  private saveUserProfile(): void {
+    localStorage.setItem('userProfile', JSON.stringify(this.userProfile));
   }
 
   isUnlocked(badgeId: number): boolean {
