@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/api/leaderboard")
+@Tag(name = "LeaderBoard", description = "Leaderboard showing user rankings")
 public class LeaderBoardController {
 
     private final LeaderBoardService leaderBoardService;
@@ -19,6 +23,7 @@ public class LeaderBoardController {
     }
 
     @GetMapping
+    @Operation(summary = "Get the leaderboard")
     public List<LeaderBoardEntry> getLeaderBoard() {
         return leaderBoardService.getLeaderBoard();
     }

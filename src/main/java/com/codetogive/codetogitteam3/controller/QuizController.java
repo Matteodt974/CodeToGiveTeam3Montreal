@@ -5,8 +5,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/api/quiz")
+@Tag(name = "Quiz", description = "Interactive quiz to evaluate awareness and provide badges")
 public class QuizController {
 
   private static final List<Map<String, Object>> QUESTIONS = List.of(
@@ -31,11 +35,13 @@ public class QuizController {
   );
 
   @GetMapping("/questions")
+  @Operation(summary = "Get quiz questions")
   public ResponseEntity<List<Map<String, Object>>> getQuestions() {
     return ResponseEntity.ok(QUESTIONS);
   }
 
   @PostMapping("/submit")
+  @Operation(summary = "Submit quiz answers and receive score/badge")
   public ResponseEntity<Map<String, Object>> submit(@RequestBody Map<String, String> answers) {
     // Scoring simple: chaque réponse "B" est considérée empathique.
     long score = answers.values().stream().filter("B"::equals).count();
