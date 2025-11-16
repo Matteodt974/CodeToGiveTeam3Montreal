@@ -45,8 +45,8 @@ public class User {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Subscription subscription;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Subscription> subscription;
 
     @OneToMany(mappedBy = "user")
     private List<Transaction> transactions = new ArrayList<>();
