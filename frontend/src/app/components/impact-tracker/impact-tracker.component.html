@@ -1,56 +1,64 @@
-<section class="bg-gray-50 py-16" aria-labelledby="impact-tracker-heading">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-      <!-- Left Column: Organization Info -->
-      <div class="space-y-6">
-        <h2
-          id="impact-tracker-heading"
-          class="text-4xl font-bold text-blue-900 mb-6"
-        >
-          Shield of Athena
-        </h2>
+<section class="bg-gradient-to-b from-gray-100 to-gray-50 py-20" aria-labelledby="impact-tracker-heading">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <!-- Section Title -->
+                  <div class="text-center mb-16">
+                    <h2 id="impact-tracker-heading" class="text-4xl font-bold text-gray-900 mb-4">
+                      Why choose Shield of Athena
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                      Our commitment to families escaping violence is reflected in our comprehensive support and proven impact.
+                    </p>
+                  </div>
 
-        <div class="prose prose-lg text-gray-700 space-y-4">
-          <p>
-            For over three decades, Shield of Athena has been a beacon of hope for
-            families escaping violence. We provide emergency shelter, counseling
-            services, and prevention programs that break the cycle of abuse.
-          </p>
+                  <!-- Impact Cards Grid -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div
+                      *ngFor="let stat of animatedStats; let i = index"
+                      class="impact-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                      role="article"
+                      [attr.aria-label]="stat.label + ': ' + formatNumber(stat.value)"
+                    >
+                      <!-- Icon Circle -->
+                      <div class="flex justify-center mb-6">
+                        <div class="icon-circle bg-blue-600 rounded-full w-20 h-20 flex items-center justify-center shadow-md">
+                          <svg
+                            class="w-10 h-10 text-white"
+                            [attr.aria-hidden]="true"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              [attr.d]="getIconPath(i)"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                            />
+                          </svg>
+                        </div>
+                      </div>
 
-          <p>
-            Our comprehensive approach addresses immediate safety needs while
-            building long-term resilience through therapy, education, and community
-            support. Every donation directly funds life-saving services and prevention
-            programs.
-          </p>
-        </div>
-      </div>
+                      <!-- Stat Title -->
+                      <h3 class="text-xl font-bold text-gray-900 text-center mb-4">
+                        {{ stat.label }}
+                      </h3>
 
-      <!-- Right Column: Impact Statistics -->
-      <div
-        class="bg-white border-2 border-blue-900 rounded-lg p-8 shadow-md"
-        role="region"
-        aria-label="Impact Statistics"
-      >
-        <div class="space-y-6">
-          <div
-            *ngFor="let stat of animatedStats; let i = index"
-            class="flex justify-between items-center pb-4"
-            [class.border-b]="i < animatedStats.length - 1"
-            [class.border-gray-200]="i < animatedStats.length - 1"
-          >
-            <span class="text-gray-800 font-medium text-lg">
-              {{ stat.label }}
-            </span>
-            <span
-              [class]="stat.color + ' text-2xl font-bold tabular-nums'"
-              [attr.aria-label]="formatNumber(stat.value) + ' ' + stat.label"
-            >
-              {{ formatNumber(stat.value) }}{{ stat.suffix }}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+                      <!-- Animated Number -->
+                      <div class="text-center mb-4">
+                        <span
+                          class="text-4xl font-bold text-blue-600 tabular-nums"
+                          [attr.aria-label]="formatNumber(stat.value) + ' ' + stat.label"
+                        >
+                          {{ formatNumber(stat.value) }}{{ stat.suffix }}
+                        </span>
+                      </div>
+
+                      <!-- Description -->
+                      <p class="text-gray-600 text-center text-sm leading-relaxed">
+                        {{ getDescription(i) }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>

@@ -6,17 +6,19 @@
         Your Achievements
       </h2>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Every action you take helps create safer communities. Track your impact and unlock achievements.
+        Every action you take helps create safer communities. Track your impact
+        and unlock achievements.
       </p>
     </div>
 
     <!-- Loading State -->
     <div *ngIf="loading" class="text-center py-12">
-      <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"></div>
+      <div
+        class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"
+      ></div>
       <p class="mt-4 text-gray-600">Loading achievements...</p>
     </div>
 
-<<<<<<< HEAD
     <!-- Error State -->
     <div *ngIf="error" class="text-center py-12">
       <div class="text-6xl mb-4">⚠️</div>
@@ -34,28 +36,36 @@
     <ng-container *ngIf="!loading && !error">
       <!-- User Stats Summary -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center">
+        <div
+          class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center"
+        >
           <div class="text-3xl font-bold text-red-600 mb-2">
             {{ userProfile.totalDonated | currency }}
           </div>
           <div class="text-sm text-gray-600 font-medium">Total Donated</div>
         </div>
 
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center">
+        <div
+          class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center"
+        >
           <div class="text-3xl font-bold text-blue-600 mb-2">
             {{ userProfile.familiesHelped }}
           </div>
           <div class="text-sm text-gray-600 font-medium">Families Helped</div>
         </div>
 
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center">
+        <div
+          class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center"
+        >
           <div class="text-3xl font-bold text-green-600 mb-2">
             {{ userProfile.donationCount }}
           </div>
           <div class="text-sm text-gray-600 font-medium">Donations Made</div>
         </div>
 
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center">
+        <div
+          class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center"
+        >
           <div class="text-3xl font-bold text-purple-600 mb-2">
             {{ userBadges.length }}
           </div>
@@ -64,7 +74,9 @@
       </div>
 
       <!-- Achievements Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      >
         <div
           *ngFor="let badge of allBadges"
           [id]="'achievement-' + badge.id"
@@ -105,7 +117,9 @@
           </p>
 
           <!-- Progress Bar -->
-          <div class="relative w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+          <div
+            class="relative w-full h-2 bg-gray-200 rounded-full overflow-hidden"
+          >
             <div
               class="absolute top-0 left-0 h-full transition-all duration-500 ease-out rounded-full"
               [class.bg-gradient-to-r]="isUnlocked(badge.id)"
@@ -126,8 +140,17 @@
               *ngIf="isUnlocked(badge.id)"
               class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800"
             >
-              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              <svg
+                class="w-4 h-4 mr-1"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"
+                />
               </svg>
               Unlocked
             </span>
@@ -135,8 +158,17 @@
               *ngIf="!isUnlocked(badge.id)"
               class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600"
             >
-              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+              <svg
+                class="w-4 h-4 mr-1"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                  clip-rule="evenodd"
+                />
               </svg>
               Locked
             </span>
@@ -145,10 +177,7 @@
       </div>
 
       <!-- Empty State (no badges in system) -->
-      <div
-        *ngIf="allBadges.length === 0"
-        class="text-center py-12"
-      >
+      <div *ngIf="allBadges.length === 0" class="text-center py-12">
         <div class="text-6xl mb-4">🎯</div>
         <h3 class="text-xl font-semibold text-gray-900 mb-2">
           No Achievements Available

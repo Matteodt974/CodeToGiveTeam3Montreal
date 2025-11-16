@@ -3,36 +3,42 @@
   <!-- home.component.html -->
   <div class="home-container">
     <!-- Hero Section -->
-    <section class="section-wrapper bg-white">
-      <div class="hero-overlay">
-        <div class="hero-content">
-          <div class="text-section">
-            <h1 class="text-4xl font-bold text-blue-900 mb-6">Shield of Athena</h1>
-            <div class="prose prose-lg text-gray-700 space-y-4">
-              <p>
-                For over three decades, Shield of Athena has been a beacon of hope for
-                families escaping violence. We provide emergency shelter, counseling
-                services, and prevention programs that break the cycle of abuse.
-              </p>
+    <section class="hero-section">
+      <div class="hero-inner">
+        <div class="hero-grid">
+          <!-- Left column -->
+          <div class="hero-left">
+            <h1 class="hero-title">
+              Shield of<br />
+              Athena<br />
+            </h1>
 
-              <p>
-                Our comprehensive approach addresses immediate safety needs while
-                building long-term resilience through therapy, education, and community
-                support. Every donation directly funds life-saving services and prevention
-                programs.
-              </p>
+            <p class="hero-sub">
+              For over three decades, Shield of Athena has been a beacon of hope for
+              families escaping violence. We provide emergency shelter, counseling
+              services, and prevention programs tailored to meet your needs.
+            </p>
+
+            <p class="hero-sub">
+              Our comprehensive approach addresses immediate safety needs while
+              building long-term resilience through therapy, education, and community
+              support. Every donation directly funds life-saving services and prevention
+              programs.
+            </p>
+
+            <div class="hero-actions">
+              <button class="cta-btn" (click)="onDonateClick()">
+                Support Our Mission
+              </button>
+
             </div>
           </div>
 
-          <div class="image-section">
-            <img
-              src="assets/images/middlepage.jpg"
-              alt="Hero image"
-              class="hero-image"
-            />
-            <button class="hero-button" (click)="onDonateClick()">
-              Commencer
-            </button>
+          <!-- Right column -->
+          <div class="hero-right" role="img" aria-label="Shield of Athena supporter">
+            <div class="hero-image-card">
+              <img src="assets/images/middlepage.jpg" alt="Community member smiling" />
+            </div>
           </div>
         </div>
       </div>
