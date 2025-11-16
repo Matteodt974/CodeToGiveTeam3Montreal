@@ -94,7 +94,6 @@ export class AchievementsComponent implements OnInit {
           this.loading = false;
         },
       });
-    console.log(this.currentUserId);
     console.log(this.allBadges);
     console.log(this.userBadgeIds);
   }
