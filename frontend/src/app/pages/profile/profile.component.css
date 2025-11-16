@@ -1,227 +1,140 @@
 .profile-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 2rem 1rem;
 }
 
-/* En-tête du profil */
+/* Profile Header */
 .profile-header {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-.profile-header h1 {
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: #003366;
-  margin: 0;
-}
-
-/* Section Montant Total */
-.total-donation-section {
-  margin-bottom: 60px;
-}
-
-.donation-card {
-  background: linear-gradient(135deg, #003366 0%, #0066cc 100%);
-  border-radius: 16px;
-  padding: 40px;
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
   display: flex;
   align-items: center;
-  gap: 30px;
-  box-shadow: 0 8px 24px rgba(0, 51, 102, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  gap: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
 }
 
-.donation-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 51, 102, 0.4);
-}
-
-.donation-icon {
-  font-size: 5rem;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
+.avatar-circle {
   width: 120px;
   height: 120px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
-.donation-details {
-  flex: 1;
-  color: #ffffff;
+.avatar-icon {
+  font-size: 3rem;
 }
 
-.donation-details h2 {
+.profile-info h1 {
   font-size: 2rem;
   font-weight: 700;
-  margin: 0 0 15px 0;
-  color: #ffffff;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
 }
 
-.donation-amount {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin: 10px 0;
-  color: #ffffff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+.user-email {
+  color: #6b7280;
+  margin: 0 0 0.25rem 0;
 }
 
-.donation-count {
-  font-size: 1.3rem;
-  font-weight: 500;
-  margin: 5px 0 0 0;
-  color: rgba(255, 255, 255, 0.9);
+.member-since {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  margin: 0 0 1rem 0;
 }
 
-/* Section Badges */
-.badges-section {
-  background: #ffffff;
-  border-radius: 12px;
-  border: 3px solid #003366;
-  padding: 40px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+.user-level {
+  display: inline-block;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 0.875rem;
 }
 
-.badges-section h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #003366;
-  margin: 0 0 40px 0;
-  text-align: center;
+/* Stats Section */
+.stats-section {
+  margin-bottom: 2rem;
 }
 
-.earned-badges {
-  margin-bottom: 20px;
+.stats-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1rem;
 }
 
-.badges-grid {
+.stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 25px;
+  gap: 1rem;
 }
 
-.badge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 25px;
-  border-radius: 12px;
-  background: #ffffff;
-  border: none;
-  box-shadow: 0 4px 16px rgba(0, 102, 204, 0.3), 0 2px 8px rgba(0, 51, 102, 0.2);
-  transition: all 0.3s ease;
-  cursor: pointer;
+.stat-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
 }
 
-.badge:hover {
+.stat-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.5), 0 4px 12px rgba(0, 51, 102, 0.3);
-  background: #e6f3ff;
 }
 
-.badge-icon {
-  font-size: 4rem;
-  margin-bottom: 15px;
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
-.badge-name {
+.stat-value {
+  font-size: 1.75rem;
   font-weight: 700;
-  color: #003366;
-  font-size: 1.6rem;
-  margin-bottom: 10px;
-  text-align: center;
+  color: #4f46e5;
+  margin-bottom: 0.25rem;
 }
 
-.badge-description {
-  font-size: 1.3rem;
-  color: #333333;
-  text-align: center;
-  line-height: 1.5;
-  font-weight: 500;
+.stat-label {
+  color: #6b7280;
+  font-size: 0.875rem;
 }
 
-.no-badges {
-  text-align: center;
-  padding: 60px 40px;
-  color: #333333;
-  font-size: 1.4rem;
+/* Section Wrapper */
+.section-wrapper {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.section-wrapper h2 {
+  font-size: 1.5rem;
   font-weight: 600;
-  background: #f8f9fa;
-  border-radius: 12px;
-  border: 3px solid #0066cc;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
-  .profile-container {
-    padding: 30px 15px;
-  }
-
-  .profile-header h1 {
-    font-size: 2.5rem;
-  }
-
-  .donation-card {
+  .profile-header {
     flex-direction: column;
     text-align: center;
-    padding: 30px 25px;
-    gap: 20px;
   }
 
-  .donation-icon {
-    font-size: 4rem;
-    width: 100px;
-    height: 100px;
-  }
-
-  .donation-details h2 {
+  .profile-info h1 {
     font-size: 1.5rem;
   }
 
-  .donation-amount {
-    font-size: 2.5rem;
-  }
-
-  .donation-count {
-    font-size: 1.1rem;
-  }
-
-  .badges-section {
-    padding: 30px 20px;
-  }
-
-  .badges-section h2 {
-    font-size: 2rem;
-  }
-
-  .badges-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-  }
-
-  .badge {
-    padding: 20px 15px;
-  }
-
-  .badge-icon {
-    font-size: 3rem;
-  }
-
-  .badge-name {
-    font-size: 1.3rem;
-  }
-
-  .badge-description {
-    font-size: 1rem;
-  }
-
-  .no-badges {
-    padding: 40px 20px;
-    font-size: 1.2rem;
+  .avatar-circle {
+    width: 100px;
+    height: 100px;
   }
 }

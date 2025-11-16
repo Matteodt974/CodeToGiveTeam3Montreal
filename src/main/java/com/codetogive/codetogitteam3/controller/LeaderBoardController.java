@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/leaderboard")
 public class LeaderBoardController {
 
     private final LeaderBoardService leaderBoardService;

@@ -1,41 +1,58 @@
-<app-page backgroundColor="#ffffff">
+<app-page backgroundColor="#f9fafb">
   <div class="profile-container">
-    <!-- En-tête du profil -->
-    <div class="profile-header">
-      <h1>Mon Profil</h1>
-    </div>
-
-    <!-- Section Montant Total -->
-    <div class="total-donation-section">
-      <div class="donation-card">
-        <div class="donation-icon">💰</div>
-        <div class="donation-details">
-          <h2>Montant Total des Donations</h2>
-          <p class="donation-amount">{{ totalDonationAmount }} $</p>
-          <p class="donation-count">{{ userDonationCount }} donation(s) effectuée(s)</p>
+    <!-- Profile Header -->
+    <section class="profile-header">
+      <div class="profile-avatar">
+        <div class="avatar-circle">
+          <span class="avatar-icon">👤</span>
         </div>
       </div>
-    </div>
+      <div class="profile-info">
+        <h1>{{ user.name }}</h1>
+        <p class="user-email">{{ user.email }}</p>
+        <p class="member-since">Membre depuis {{ user.memberSince }}</p>
+        <span class="user-level">{{ user.level }}</span>
+      </div>
+    </section>
 
-    <!-- Section Badges -->
-    <div class="badges-section">
-      <h2>Vos Badges de Donateur</h2>
-      
-      <div class="earned-badges" *ngIf="earnedBadges.length > 0">
-        <div class="badges-grid">
-          @for (badge of earnedBadges; track badge.id) {
-          <div class="badge earned">
-            <span class="badge-icon">{{ badge.icon }}</span>
-            <span class="badge-name">{{ badge.name }}</span>
-            <span class="badge-description">{{ badge.description }}</span>
-          </div>
-          }
+    <!-- Stats Overview -->
+    <section class="stats-section">
+      <h2>Mes Statistiques</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">💰</div>
+          <div class="stat-value">{{ user.totalDonations | currency:'CAD':'symbol':'1.0-0' }}</div>
+          <div class="stat-label">Total des dons</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🎁</div>
+          <div class="stat-value">{{ user.donationCount }}</div>
+          <div class="stat-label">Nombre de dons</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-value">{{ user.currentStreak }}</div>
+          <div class="stat-label">Série actuelle</div>
         </div>
       </div>
+    </section>
 
-      <div class="no-badges" *ngIf="earnedBadges.length === 0">
-        <p>Faites votre première donation pour obtenir votre premier badge! 🎉</p>
-      </div>
-    </div>
+    <!-- Achievements Section -->
+    <section class="section-wrapper">
+      <h2>Mes Réalisations</h2>
+      <app-achievements></app-achievements>
+    </section>
+
+    <!-- Journey Timeline Section -->
+    <section class="section-wrapper">
+      <h2>Mon Parcours</h2>
+      <app-journey-timeline></app-journey-timeline>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section class="section-wrapper">
+      <h2>Classement</h2>
+      <app-leaderboard></app-leaderboard>
+    </section>
   </div>
 </app-page>
