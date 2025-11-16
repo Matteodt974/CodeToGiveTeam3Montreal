@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { N8nFormComponent } from '../n8n-form/n8n-form.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, N8nFormComponent],
   templateUrl: './navbar.component.html'
 })
 export class NavbarComponent {
@@ -94,9 +95,9 @@ export class NavbarComponent {
   }
 
   handleSignup(): void {
-    console.log('Signup attempt:', { 
-      name: this.signupName, 
-      email: this.signupEmail, 
+    console.log('Signup attempt:', {
+      name: this.signupName,
+      email: this.signupEmail,
       password: this.signupPassword,
       phone: this.signupPhone,
       address: this.signupAddress,

@@ -44,7 +44,10 @@
         >
           Donate Now
         </button>
-        
+
+        <!-- N8N Voice Call Button -->
+        <app-n8n-form></app-n8n-form>
+
         <!-- Auth Buttons (if not logged in) -->
         <div *ngIf="!isLoggedIn" class="flex items-center gap-3 ml-2 border-l border-gray-300 pl-4">
           <button
@@ -170,7 +173,7 @@
       >
         About Us
       </a>
-      
+
       <!-- Profile Link (if logged in) -->
       <a
         *ngIf="isLoggedIn"
@@ -190,13 +193,18 @@
       >
         Log out
       </button>
-      
+
       <button
         (click)="navigateToDonate()"
         class="w-full mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-all duration-200"
       >
         Donate Now
       </button>
+
+      <!-- N8N Voice Call Button (Mobile) -->
+      <div class="mt-2 w-full">
+        <app-n8n-form></app-n8n-form>
+      </div>
 
       <!-- Auth Buttons Mobile (if not logged in) -->
       <div *ngIf="!isLoggedIn" class="pt-4 border-t border-gray-200 space-y-2">
@@ -481,7 +489,7 @@
           class="mt-1 rounded border-gray-300 text-green-600 focus:ring-green-600"
         />
         <label for="terms" class="ml-2 text-sm text-gray-600">
-          I agree to the <a href="#" class="text-green-600 hover:text-green-800">Terms of Service</a> 
+          I agree to the <a href="#" class="text-green-600 hover:text-green-800">Terms of Service</a>
           and <a href="#" class="text-green-600 hover:text-green-800">Privacy Policy</a>
         </label>
       </div>

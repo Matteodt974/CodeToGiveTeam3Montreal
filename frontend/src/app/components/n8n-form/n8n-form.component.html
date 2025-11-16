@@ -1,15 +1,22 @@
-<button class="n8n-open-btn" (click)="openForm()">Open voice form</button>
+<button class="n8n-open-btn" (click)="openForm()" aria-controls="n8n-form-frame">
+  <span class="icon">📞</span>
+  <span>Call Us (Athena AI)</span>
+</button>
 
-<div class="modal" *ngIf="open" role="dialog" aria-modal="true">
+<div class="modal" *ngIf="open" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="modal-backdrop" (click)="closeForm()"></div>
   <div class="modal-window" role="document">
-    <button class="modal-close" (click)="closeForm()" aria-label="Close">×</button>
+    <h2 id="modal-title" class="sr-only">Voice Call Request Form</h2>
+    <button class="modal-close" (click)="closeForm()" aria-label="Close dialog">×</button>
     <iframe
       [src]="iframeSrc"
+      id="n8n-form-frame"
+      title="Voice call request form powered by Athena AI"
       width="100%"
       height="680"
-      frameborder="0"
-      sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
+      style="border: none;"
+      loading="lazy"
+      sandbox="allow-scripts allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox"
       allow="microphone; camera"
     ></iframe>
   </div>
