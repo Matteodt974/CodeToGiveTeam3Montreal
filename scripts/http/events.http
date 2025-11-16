@@ -1,0 +1,36 @@
+### List active donation events
+GET http://localhost:8080/api/events
+Accept: application/json
+
+### Create donation event (without auth, should fail)
+POST http://localhost:8080/api/events
+Content-Type: application/json
+
+{
+  "title": "Winter Relief Campaign",
+  "description": "Helping families through the winter",
+  "active": true,
+  "goalAmount": 5000
+}
+
+### Create donation event
+POST http://localhost:8080/api/events
+X-API-Key: dev-api-key
+Content-Type: application/json
+
+{
+  "title": "Winter Relief Campaign",
+  "description": "Helping families through the winter",
+  "active": true,
+  "goalAmount": 5000
+}
+
+### Donate to event
+POST http://localhost:8080/api/events/1/donate?donorName=George&email=george@test.com&amount=25
+X-API-Key: dev-api-key
+Content-Type: application/x-www-form-urlencoded
+
+# TODO: Error. check later
+### List event transactions
+GET http://localhost:8080/api/events/1/transactions
+Accept: application/json

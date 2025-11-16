@@ -1,0 +1,22 @@
+### Create donation transaction (non-event)
+POST http://localhost:8080/api/transactions
+X-API-Key: dev-api-key
+Content-Type: application/json
+
+{
+  "email": "george@test.com",
+  "amount": 50,
+  "anonymous": false
+}
+
+### Get all transactions
+GET http://localhost:8080/api/transactions
+Accept: application/json
+
+### Get by user
+GET http://localhost:8080/api/transactions/user/1
+Accept: application/json
+
+### Get transaction by ID
+GET http://localhost:8080/api/transactions/1
+Accept: application/json

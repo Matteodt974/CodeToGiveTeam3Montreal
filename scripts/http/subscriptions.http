@@ -1,0 +1,23 @@
+### Get active subscriptions for a user (should fail, no subscription yet)
+GET http://localhost:8080/api/subscriptions?email=john@test.com
+Accept: application/json
+
+### Create a new subscription
+POST http://localhost:8080/api/subscriptions
+X-API-Key: dev-api-key
+Content-Type: application/json
+
+{
+  "email": "john@test.com",
+  "amount": 20,
+  "tier": "GARDIEN"
+}
+
+### Get active subscriptions for a user
+GET http://localhost:8080/api/subscriptions?email=john@test.com
+Accept: application/json
+
+### Cancel a subscription
+DELETE http://localhost:8080/api/subscriptions?email=john@test.com
+X-API-Key: dev-api-key
+Accept: application/json

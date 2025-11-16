@@ -1,0 +1,23 @@
+### Get questions
+GET http://localhost:8080/api/quiz/questions
+Accept: application/json
+
+### Submit - all empathic (expect score 2)
+POST http://localhost:8080/api/quiz/submit
+X-API-Key: dev-api-key
+Content-Type: application/json
+
+{
+  "1": "B",
+  "2": "B"
+}
+
+### Submit - non-empathic (expect score 0)
+POST http://localhost:8080/api/quiz/submit
+X-API-Key: dev-api-key
+Content-Type: application/json
+
+{
+  "1": "A",
+  "2": "C"
+}

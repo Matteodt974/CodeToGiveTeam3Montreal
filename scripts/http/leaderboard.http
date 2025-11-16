@@ -1,0 +1,4 @@
+# TODO: Errors out, check later
+### Get leaderboard listing
+GET http://localhost:8080/api/leaderboard
+Accept: application/json

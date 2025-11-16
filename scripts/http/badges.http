@@ -1,0 +1,54 @@
+### List all badges
+GET http://localhost:8080/api/badges
+Accept: application/json
+
+
+### Get badge by ID
+GET http://localhost:8080/api/badges/1
+Accept: application/json
+
+### Create badge (without key, should fail)
+POST http://localhost:8080/api/badges
+Content-Type: application/json
+
+{
+  "name": "Hero",
+  "description": "Brave supporter",
+  "iconUrl": "https://example.com/hero.png"
+}
+
+### Create badge
+POST http://localhost:8080/api/badges
+X-API-Key: dev-api-key
+Content-Type: application/json
+
+{
+  "name": "Hero",
+  "description": "Brave supporter",
+  "iconUrl": "https://example.com/hero.png"
+}
+
+### Update badge (without key, should fail)
+PUT http://localhost:8080/api/badges/1
+Content-Type: application/json
+
+{
+  "name": "Updated Badge",
+  "description": "Updated desc",
+  "iconUrl": "https://example.com/new.png"
+}
+
+### Update badge
+PUT http://localhost:8080/api/badges/1
+X-API-Key: dev-api-key
+Content-Type: application/json
+
+{
+  "name": "Updated Badge",
+  "description": "Updated desc",
+  "iconUrl": "https://example.com/new.png"
+}
+
+### Get badges for a user
+GET http://localhost:8080/api/badges/user/1
+Accept: application/json
