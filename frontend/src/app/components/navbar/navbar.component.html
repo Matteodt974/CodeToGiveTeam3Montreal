@@ -3,7 +3,6 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
-      <!-- Replace the Logo section in navbar.component.html -->
       <a routerLink="/" class="flex items-center gap-2 flex-shrink-0">
         <img
           src="assets/images/soa.jpg"
@@ -46,7 +45,7 @@
           Donate Now
         </button>
         
-        <!-- Auth Buttons (si non connecté) -->
+        <!-- Auth Buttons (if not logged in) -->
         <div *ngIf="!isLoggedIn" class="flex items-center gap-3 ml-2 border-l border-gray-300 pl-4">
           <button
             (click)="openLoginModal()"
@@ -58,18 +57,18 @@
             (click)="openSignupModal()"
             class="px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 shadow-sm transition-all duration-200 transform hover:scale-105"
           >
-            Créer un compte
+            Create Account
           </button>
         </div>
 
-        <!-- Profile Button (si connecté) -->
+        <!-- Profile Button (if logged in) -->
         <a
           *ngIf="isLoggedIn"
           routerLink="/profile"
           routerLinkActive="text-indigo-600"
           (click)="closeMenu()"
           class="ml-2 p-2 text-gray-700 hover:text-indigo-600 transition-colors rounded-full hover:bg-indigo-50 border-l border-gray-300 pl-4"
-          title="Mon Profil"
+          title="My Profile"
         >
           <svg
             class="h-6 w-6"
@@ -86,12 +85,12 @@
           </svg>
         </a>
 
-        <!-- Logout Button (si connecté) -->
+        <!-- Logout Button (if logged in) -->
         <button
           *ngIf="isLoggedIn"
           (click)="handleLogout()"
           class="p-2 text-gray-700 hover:text-red-600 transition-colors rounded-full hover:bg-red-50"
-          title="Déconnexion"
+          title="Log out"
         >
           <svg
             class="h-6 w-6"
@@ -172,7 +171,7 @@
         About Us
       </a>
       
-      <!-- Profile Link (si connecté) -->
+      <!-- Profile Link (if logged in) -->
       <a
         *ngIf="isLoggedIn"
         routerLink="/profile"
@@ -180,16 +179,16 @@
         (click)="closeMenu()"
         class="block px-4 py-2 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 rounded-md transition-colors font-medium"
       >
-        Mon Profil
+        My Profile
       </a>
 
-      <!-- Logout Button (si connecté) -->
+      <!-- Logout Button (if logged in) -->
       <button
         *ngIf="isLoggedIn"
         (click)="handleLogout()"
         class="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 rounded-md transition-colors font-medium"
       >
-        Déconnexion
+        Log out
       </button>
       
       <button
@@ -199,7 +198,7 @@
         Donate Now
       </button>
 
-      <!-- Auth Buttons Mobile (si non connecté) -->
+      <!-- Auth Buttons Mobile (if not logged in) -->
       <div *ngIf="!isLoggedIn" class="pt-4 border-t border-gray-200 space-y-2">
         <button
           (click)="openLoginModal()"
@@ -211,7 +210,7 @@
           (click)="openSignupModal()"
           class="w-full px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-all duration-200"
         >
-          Créer un compte
+          Create Account
         </button>
       </div>
     </div>
@@ -230,7 +229,7 @@
   >
     <!-- Modal Header -->
     <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-bold text-gray-900">Connexion</h2>
+      <h2 class="text-2xl font-bold text-gray-900">Log In</h2>
       <button
         (click)="closeLoginModal()"
         class="text-gray-400 hover:text-gray-600 transition-colors"
@@ -254,13 +253,13 @@
           name="loginEmail"
           required
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition-all"
-          placeholder="votre@email.com"
+          placeholder="your@email.com"
         />
       </div>
 
       <div>
         <label for="login-password" class="block text-sm font-medium text-gray-700 mb-1">
-          Mot de passe
+          Password
         </label>
         <input
           type="password"
@@ -276,10 +275,10 @@
       <div class="flex items-center justify-between">
         <label class="flex items-center">
           <input type="checkbox" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
-          <span class="ml-2 text-sm text-gray-600">Se souvenir de moi</span>
+          <span class="ml-2 text-sm text-gray-600">Remember me</span>
         </label>
         <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800">
-          Mot de passe oublié?
+          Forgot password?
         </a>
       </div>
 
@@ -287,19 +286,19 @@
         type="submit"
         class="w-full py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-all duration-200 transform hover:scale-105"
       >
-        Se connecter
+        Log In
       </button>
     </form>
 
     <!-- Divider -->
     <div class="mt-6 text-center">
       <p class="text-sm text-gray-600">
-        Pas encore de compte?
+        Don't have an account?
         <button
           (click)="switchToSignup()"
           class="text-indigo-600 hover:text-indigo-800 font-medium"
         >
-          Créer un compte
+          Create Account
         </button>
       </p>
     </div>
@@ -318,7 +317,7 @@
   >
     <!-- Modal Header -->
     <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-bold text-gray-900">Créer un compte</h2>
+      <h2 class="text-2xl font-bold text-gray-900">Create Account</h2>
       <button
         (click)="closeSignupModal()"
         class="text-gray-400 hover:text-gray-600 transition-colors"
@@ -333,7 +332,7 @@
     <form (ngSubmit)="handleSignup()" class="space-y-4">
       <div>
         <label for="signup-name" class="block text-sm font-medium text-gray-700 mb-1">
-          Nom complet
+          Full Name
         </label>
         <input
           type="text"
@@ -342,7 +341,7 @@
           name="signupName"
           required
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent transition-all"
-          placeholder="Jean Dupont"
+          placeholder="John Doe"
         />
       </div>
 
@@ -357,13 +356,13 @@
           name="signupEmail"
           required
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent transition-all"
-          placeholder="votre@email.com"
+          placeholder="your@email.com"
         />
       </div>
 
       <div>
         <label for="signup-password" class="block text-sm font-medium text-gray-700 mb-1">
-          Mot de passe
+          Password
         </label>
         <input
           type="password"
@@ -378,7 +377,7 @@
 
       <div>
         <label for="signup-confirm-password" class="block text-sm font-medium text-gray-700 mb-1">
-          Confirmer le mot de passe
+          Confirm Password
         </label>
         <input
           type="password"
@@ -393,7 +392,7 @@
 
       <div>
         <label for="signup-phone" class="block text-sm font-medium text-gray-700 mb-1">
-          Numéro de téléphone
+          Phone Number
         </label>
         <input
           type="tel"
@@ -408,7 +407,7 @@
 
       <div>
         <label for="signup-address" class="block text-sm font-medium text-gray-700 mb-1">
-          Adresse
+          Address
         </label>
         <input
           type="text"
@@ -417,14 +416,14 @@
           name="signupAddress"
           required
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent transition-all"
-          placeholder="123 Rue Principale"
+          placeholder="123 Main Street"
         />
       </div>
 
       <div class="grid grid-cols-2 gap-4">
         <div>
           <label for="signup-city" class="block text-sm font-medium text-gray-700 mb-1">
-            Ville
+            City
           </label>
           <input
             type="text"
@@ -433,13 +432,13 @@
             name="signupCity"
             required
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent transition-all"
-            placeholder="Montréal"
+            placeholder="Montreal"
           />
         </div>
 
         <div>
           <label for="signup-postal-code" class="block text-sm font-medium text-gray-700 mb-1">
-            Code postal
+            Postal Code
           </label>
           <input
             type="text"
@@ -455,7 +454,7 @@
 
       <div>
         <label for="signup-country" class="block text-sm font-medium text-gray-700 mb-1">
-          Pays
+          Country
         </label>
         <select
           id="signup-country"
@@ -464,13 +463,13 @@
           required
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent transition-all"
         >
-          <option value="" disabled selected>Sélectionnez votre pays</option>
+          <option value="" disabled selected>Select your country</option>
           <option value="Canada">Canada</option>
           <option value="France">France</option>
-          <option value="Belgique">Belgique</option>
-          <option value="Suisse">Suisse</option>
-          <option value="États-Unis">États-Unis</option>
-          <option value="Autre">Autre</option>
+          <option value="Belgium">Belgium</option>
+          <option value="Switzerland">Switzerland</option>
+          <option value="United States">United States</option>
+          <option value="Other">Other</option>
         </select>
       </div>
 
@@ -482,8 +481,8 @@
           class="mt-1 rounded border-gray-300 text-green-600 focus:ring-green-600"
         />
         <label for="terms" class="ml-2 text-sm text-gray-600">
-          J'accepte les <a href="#" class="text-green-600 hover:text-green-800">conditions d'utilisation</a> 
-          et la <a href="#" class="text-green-600 hover:text-green-800">politique de confidentialité</a>
+          I agree to the <a href="#" class="text-green-600 hover:text-green-800">Terms of Service</a> 
+          and <a href="#" class="text-green-600 hover:text-green-800">Privacy Policy</a>
         </label>
       </div>
 
@@ -491,19 +490,19 @@
         type="submit"
         class="w-full py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-all duration-200 transform hover:scale-105"
       >
-        Créer mon compte
+        Create My Account
       </button>
     </form>
 
     <!-- Divider -->
     <div class="mt-6 text-center">
       <p class="text-sm text-gray-600">
-        Déjà un compte?
+        Already have an account?
         <button
           (click)="switchToLogin()"
           class="text-green-600 hover:text-green-800 font-medium"
         >
-          Se connecter
+          Log In
         </button>
       </p>
     </div>

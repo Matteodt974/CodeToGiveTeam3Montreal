@@ -1,12 +1,12 @@
 <app-page backgroundColor="#ffffff">
   <div class="badges-container">
     <div class="badges-header">
-      <h2>Vos Badges de Donateur</h2>
+      <h2>Your Donor Badges</h2>
       <p class="donation-count">{{ userDonationCount }} donation(s)</p>
     </div>
 
     <div class="earned-badges">
-      <h3 *ngIf="earnedBadges.length > 0">Badges Obtenus</h3>
+      <h3 *ngIf="earnedBadges.length > 0">Earned Badges</h3>
       <div class="badges-grid">
         @for (badge of earnedBadges; track badge.id) {
         <div class="badge earned">
@@ -17,28 +17,9 @@
         }
       </div>
     </div>
-    <!--  <div class="next-badge" *ngIf="nextBadge">-->
-    <!--    <h3>Prochain Badge</h3>-->
-    <!--    <div class="next-badge-info">-->
-    <!--      <span class="next-badge-icon">{{ nextBadge.icon }}</span>-->
-    <!--      <div class="next-badge-details">-->
-    <!--        <p class="next-badge-name">{{ nextBadge.name }}</p>-->
-    <!--        <p class="next-badge-description">{{ nextBadge.description }}</p>-->
-    <!--        <div class="progress-bar">-->
-    <!--          <div-->
-    <!--            class="progress-fill"-->
-    <!--            [style.width.%]="progressToNextBadge"-->
-    <!--          ></div>-->
-    <!--        </div>-->
-    <!--        <p class="progress-text">-->
-    <!--          {{ userDonationCount }} / {{ nextBadge.minDonations }}-->
-    <!--        </p>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--  </div>-->
 
     <div class="no-badges" *ngIf="earnedBadges.length === 0">
-      <p>Faites votre première donation pour obtenir votre premier badge! 🎉</p>
+      <p>Make your first donation to earn your first badge! 🎉</p>
     </div>
   </div>
 </app-page>
