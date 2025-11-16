@@ -54,4 +54,17 @@ export class ApiService {
   sendMessage(message: string): Observable<{ reply: string }> {
     return this.http.post<{ reply: string }>(`${this.base}/assistant/message`, { message });
   }
+
+  // Badges
+  getAllBadges(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.base}/badges`);
+  }
+
+  getBadgeById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.base}/badges/${id}`);
+  }
+
+  getUserBadges(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.base}/badges/user/${userId}`);
+  }
 }

@@ -1,6 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgForOf, NgIf} from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgForOf, NgIf } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
+interface CreateTransactionRequest {
+  donorName: string;
+  email: string;
+  amount: number;
+  anonymous: boolean;
+}
+
+interface TransactionResponse {
+  id: number;
+  donorName: string;
+  email: string;
+  amount: number;
+  anonymous: boolean;
+  createdAt: string;
+}
 
 @Component({
   selector: 'app-donation-form',
@@ -14,6 +32,9 @@ import {NgForOf, NgIf} from '@angular/common';
   styleUrls: ['./donation-form.component.css']
 })
 export class DonationFormComponent implements OnInit {
+  private http = inject(HttpClient);
+  private apiBase = environment.apiBase;
+
   presetAmounts = [25, 50, 100, 250];
   selectedAmount = 0;
   customAmount: number | null = null;
@@ -35,7 +56,6 @@ export class DonationFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Pre-select default amount
     this.selectAmount(100);
   }
 
@@ -89,25 +109,31 @@ export class DonationFormComponent implements OnInit {
 
     this.isProcessing = true;
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    const donationData = {
-      ...this.donorForm.value,
+    // Créer la requête de transaction avec les valeurs hardcodées
+    const transactionRequest: CreateTransactionRequest = {
+      donorName: 'george',
+      email: 'george@test.com',
       amount: this.selectedAmount,
-      isRecurring: this.isRecurring,
-      timestamp: new Date().toISOString()
+      anonymous: this.donorForm.value.anonymous || false
     };
 
-    console.log('Donation submitted:', donationData);
+    // Appel API pour créer la transaction
+    this.http.post<TransactionResponse>(`${this.apiBase}/transactions`, transactionRequest).subscribe({
+      next: (response) => {
+        console.log('Transaction created:', response);
+        this.isProcessing = false;
+        alert(`Thank you for your ${this.isRecurring ? 'monthly ' : ''}donation of $${this.selectedAmount}! Transaction ID: ${response.id}`);
 
-    // Reset form and show success
-    this.isProcessing = false;
-    alert(`Thank you for your ${this.isRecurring ? 'monthly ' : ''}donation of $${this.selectedAmount}!`);
-
-    // Reset form
-    this.donorForm.reset();
-    this.selectedAmount = 100;
-    this.isRecurring = false;
+        // Reset form
+        this.donorForm.reset();
+        this.selectedAmount = 100;
+        this.isRecurring = false;
+      },
+      error: (err) => {
+        console.error('Error creating transaction:', err);
+        this.isProcessing = false;
+        alert('An error occurred while processing your donation. Please try again.');
+      }
+    });
   }
 }
