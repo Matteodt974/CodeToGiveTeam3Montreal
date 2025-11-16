@@ -89,4 +89,29 @@ public class BadgeService {
                 .toList();
     }
 
+    @Transactional
+    public List<BadgeDTO> assignBadgesToUser(Long userId, List<Long> badgeIds) {
+        if (userId == null) throw new IllegalArgumentException("User ID must not be null");
+        if (badgeIds == null || badgeIds.isEmpty()) throw new IllegalArgumentException("Badge IDs must not be empty");
+
+        User user = userRepo.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + userId));
+
+        for (Long badgeId : badgeIds) {
+            Badge badge = badgeRepo.findById(badgeId)
+                    .orElseThrow(() -> new IllegalArgumentException("Badge not found with id: " + badgeId));
+
+            // Check for duplicate assignment
+            if (!user.getBadges().contains(badge)) {
+                user.getBadges().add(badge);
+                badge.getUsers().add(user);
+            }
+        }
+
+        userRepo.save(user);
+
+        return user.getBadges().stream()
+                .map(BadgeMapper::toDTO)
+                .toList();
+    }
 }

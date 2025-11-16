@@ -53,6 +53,11 @@ public class BadgeController {
         return ResponseEntity.ok(badgeService.getBadgesForUser(id));
     }
 
+    @PostMapping("user/{userId}/assign")
+    public ResponseEntity<List<BadgeDTO>> SetBadgesToUser(@PathVariable Long userId, @RequestBody List<Long> badgeIds) {
+        return ResponseEntity.ok(badgeService.assignBadgesToUser(userId, badgeIds));
+    }
+
     // hardcoded user for demo purposes
     @GetMapping("/me")
     @Operation(summary = "Get badges for the logged in user")
