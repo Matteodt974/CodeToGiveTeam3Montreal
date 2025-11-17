@@ -1,4 +1,15 @@
 <div class="w-full max-w-4xl mx-auto p-6">
+  <!-- Event Donation Banner -->
+  <div *ngIf="isEventDonation" class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl shadow-lg p-6 mb-6 text-white">
+    <div class="flex items-center gap-3">
+      <span class="text-3xl">🎯</span>
+      <div>
+        <h2 class="text-2xl font-bold">Donating to Event</h2>
+        <p class="text-indigo-100">{{ eventTitle }}</p>
+      </div>
+    </div>
+  </div>
+
   <!-- Donation Amount Selection -->
   <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
     <h2 class="text-3xl font-bold text-gray-900 mb-2">Make Your Impact</h2>

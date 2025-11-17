@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
@@ -22,6 +23,7 @@ interface DonationEvent {
 })
 export class DonationeventComponent implements OnInit {
   private http = inject(HttpClient);
+  private router = inject(Router);
   private apiBase = environment.apiBase;
 
   events: DonationEvent[] = [];
@@ -46,6 +48,16 @@ export class DonationeventComponent implements OnInit {
         console.error('Error loading events:', err);
         this.error = 'Unable to load events. Please try again.';
         this.loading = false;
+      },
+    });
+  }
+
+  navigateToDonation(event: DonationEvent): void {
+    // Navigate to donation page with event info as query params
+    this.router.navigate(['/donate'], {
+      queryParams: {
+        eventId: event.id,
+        eventTitle: event.title,
       },
     });
   }

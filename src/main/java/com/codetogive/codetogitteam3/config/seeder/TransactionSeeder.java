@@ -34,7 +34,7 @@ public class TransactionSeeder implements CommandLineRunner {
             return;
         }
 
-        User user = userRepo.findAll().stream().findFirst().orElse(null);
+        User user = userRepo.findAll().stream().skip(1).findFirst().orElse(null);
         if (user == null) return;
 
         Subscription sub = subscriptionRepo
