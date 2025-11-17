@@ -2,7 +2,6 @@ import {Component, OnInit, inject} from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {ImpactTrackerComponent} from '../../components/impact-tracker/impact-tracker.component';
-import {AchievementsComponent} from '../../components/achievements/achievements.component';
 import {QuizComponent} from '../../components/quiz/quiz.component';
 import {JourneyTimelineComponent} from '../../components/journey-timeline/journey-timeline.component';
 import {LeaderboardComponent} from '../../components/leaderboard/leaderboard.component';
@@ -16,7 +15,6 @@ import {DonationeventComponent} from '../../components/donationevent/donationeve
     CommonModule,
     PageComponent,
     ImpactTrackerComponent,
-    AchievementsComponent,
     QuizComponent,
     JourneyTimelineComponent,
     LeaderboardComponent,
