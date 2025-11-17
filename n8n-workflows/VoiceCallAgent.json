@@ -1,0 +1,101 @@
+{
+  "name": "Retell AI Voice Call Agent Form Submission",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Voice Call Request",
+        "formDescription": "Submit your details to receive a voice call from our AI agent",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Phone Number",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Subject",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false,
+          "buttonLabel": "Request Call",
+          "path": "voice-call-request"
+        }
+      },
+      "id": "2fa65324-2fd5-4094-934c-29ce6f7677ce",
+      "name": "Contact Form",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "fded3c8c-82cb-440e-899b-aa625dd07ba9"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.retellai.com/v2/create-phone-call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer key_048e9454fe6c8ae1a0a6048f79cd"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{\n    \"from_number\": \"+12074196620\",\n    \"to_number\": \"{{ $json[\"Phone Number\"] }}\",\n    \"retell_llm_dynamic_variables\": {\n        \"name\": \"{{ $json.Name }}\",\n        \"email\": \"{{ $json.Email }}\",\n        \"phone number\": \"{{ $json[\"Phone Number\"] }}\",\n        \"subject\": \"{{ $json.Subject }}\"\n    },\n    \"override_agent_id\": \"agent_c19aa2a69af50af4e0795accda\"\n}",
+        "options": {}
+      },
+      "id": "b7eda8d3-d062-413a-9eb8-6ff922483e21",
+      "name": "Retell AI - Create Voice Call",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        224,
+        0
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Contact Form": {
+      "main": [
+        [
+          {
+            "node": "Retell AI - Create Voice Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a6bb0f25-24fc-4b13-9cef-aa3a6bee80ff",
+  "meta": {
+    "instanceId": "61e6475d805c52ef7c1803a48d88ac04805713f9e92454b010c0cb7e2a18188c"
+  },
+  "id": "6yt7QvUOGRYYBmFg",
+  "tags": []
+}
