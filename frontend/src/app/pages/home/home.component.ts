@@ -7,6 +7,7 @@ import {JourneyTimelineComponent} from '../../components/journey-timeline/journe
 import {LeaderboardComponent} from '../../components/leaderboard/leaderboard.component';
 import {PageComponent} from '../../components/page/page.component';
 import {DonationeventComponent} from '../../components/donationevent/donationevent.component';
+import { SocialShareComponent } from '../../components/socialshare/share.component';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ import {DonationeventComponent} from '../../components/donationevent/donationeve
     QuizComponent,
     JourneyTimelineComponent,
     LeaderboardComponent,
-    DonationeventComponent
+    DonationeventComponent,
+    SocialShareComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']

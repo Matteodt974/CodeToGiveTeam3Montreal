@@ -5,6 +5,7 @@ import { PageComponent } from '../../components/page/page.component';
 import { AchievementsComponent } from '../../components/achievements/achievements.component';
 import { LeaderboardComponent } from '../../components/leaderboard/leaderboard.component';
 import { JourneyTimelineComponent } from '../../components/journey-timeline/journey-timeline.component';
+import { SocialShareComponent } from '../../components/socialshare/share.component';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +17,7 @@ import { JourneyTimelineComponent } from '../../components/journey-timeline/jour
     AchievementsComponent,
     LeaderboardComponent,
     JourneyTimelineComponent,
+    SocialShareComponent,
   ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
