@@ -1,0 +1,772 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "basicAuth",
+        "formTitle": "AI Post Maker & Uploader",
+        "formDescription": "=Summarize the main idea of the post in a few words. This helps the AI understand the focus — for example, an awareness message, a community resource highlight, an event announcement, or a support message related to conjugal violence prevention.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Post Title/Topic",
+              "placeholder": "Summarize the main idea of the post in a few words. This helps the AI understand the focus, for example, an awareness message, a community resource highlight, an event announcement, or a support message related to conjugal violence prevention.",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Optional (Keywords or Hashtags)",
+              "placeholder": "Add any specific keywords or hashtags you want the AI to include in the post. This will ensure the generated content aligns with your branding or campaign needs."
+            },
+            {
+              "fieldLabel": "Optional Link",
+              "placeholder": "http:// link of any product, service, formt, support etc"
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "buttonLabel": "Continue to Image Upload"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        672,
+        368
+      ],
+      "id": "8529ba20-7333-401b-b342-ea97a3114a38",
+      "name": "On form submission",
+      "webhookId": "1c30918f-c0ca-4a86-9701-8877c81a6df8",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "4JbjcL74vTMhJhav",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=### 🛡️ Content Strategy: Shield of Athena\n* **Tone:** Empathetic, Empowering, Urgent, Safe, and Educational.\n* **Goal:** Raise awareness, support victims, and highlight community services.\n* **Default Link:** `https://shieldofathena.com` (Used if the optional link is empty).\n\n---\n\n### 1. LinkedIn\n* **Style:** Professional advocacy & Organizational impact.\n* **Focus:** Highlighting the social impact of the event/topic and thanking partners/staff.\n\n**Post Content:**\n> We are proud to share an important update regarding **{{ $json['Post Title/Topic'] }}**. At Shield of Athena, our mission is to provide safety and empowerment to victims of family violence, and this initiative marks another step forward in our commitment to the community. We invite our partners and professional network to join us in supporting this cause. **{{ $json.formMode }}** plays a vital role in how we address these challenges.\n>\n> Learn more about how you can get involved here: {{ $('On form submission').item.json['Optional Link'] ? $('On form submission').item.json['Optional Link'] : '[https://shieldofathena.com](https://shieldofathena.com)' }}\n>\n> #EndDomesticViolence #SocialWork #CommunityImpact #NonProfit #ShieldOfAthena #WomensRights #FamilyServices #MontrealCharity #Advocacy #SocialChange\n\n---\n\n### 2. Instagram\n* **Style:** Visual storytelling & Emotional connection.\n* **Focus:** Hope, support, and visual highlights of the event.\n\n**Post Content:**\n> ✨ Together, we can break the cycle.\n>\n> We are excited to highlight **{{ $json['Post Title/Topic'] }}**! 💜 It is through efforts like these that we create safer spaces for women and children. Swipe to see how **{{ $json.formMode }}** is making a difference today.\n>\n> Your support changes lives. Let’s stand together against violence. 🕊️\n>\n> 🔗 Visit us: {{ $('On form submission').item.json['Optional Link'] ? $('On form submission').item.json['Optional Link'] : '[https://shieldofathena.com](https://shieldofathena.com)' }}\n>\n> #ShieldOfAthena #EndViolence #SafeSpace #Hope #CommunityLove #WomenEmpowerment #FamilySupport #Montreal #CharityEvent #SpeakUp\n\n---\n\n### 3. Facebook\n* **Style:** Friendly, Community-centric & Shareable.\n* **Focus:** Engaging local families and community members.\n\n**Post Content:**\n> Hello to our wonderful community! 👋\n>\n> We have some news to share about **{{ $json['Post Title/Topic'] }}**. At Shield of Athena, we believe that **{{ $json.formMode }}** is essential for building a safer future for families. 🏠💙 We’d love for you to get involved and help us spread the word to those who might need support.\n>\n> Check out the full details here: {{ $('On form submission').item.json['Optional Link'] ? $('On form submission').item.json['Optional Link'] : '[https://shieldofathena.com](https://shieldofathena.com)' }}\n>\n> #CommunityCare #ShieldOfAthena #EndDomesticAbuse #FamilySafety #MontrealCommunity #SupportSurvivors #NonProfit #CharityWork #TogetherWeCan #SocialGood\n\n---\n\n### 4. Twitter (X)\n* **Style:** Urgent, Concise & Impactful.\n* **Focus:** Advocacy, awareness, and quick calls to action.\n\n**Post Content:**\n> Violence has no place in our homes. 🛑\n>\n> We are highlighting **{{ $json['Post Title/Topic'] }}** to bring attention to **{{ $json.formMode }}**. Every action counts in supporting survivors.\n>\n> Details: {{ $('On form submission').item.json['Optional Link'] ? $('On form submission').item.json['Optional Link'] : '[https://shieldofathena.com](https://shieldofathena.com)' }}\n>\n> #EndDV #ShieldOfAthena #HumanRights #StopTheViolence #Support #Charity #ActionNow\n\n---\n\n### 5. YouTube (Bonus)\n* **Style:** Educational & deeply informative.\n* **Focus:** Explaining the event/topic in depth.\n\n**Video Title:**\n> **{{ $json['Post Title/Topic'] }}** | Shield of Athena\n\n**Video Description:**\n> In this video, Shield of Athena explores **{{ $json['Post Title/Topic'] }}** and discusses the importance of **{{ $json.formMode }}** in the fight against conjugal violence.\n>\n> Shield of Athena provides emergency shelter, professional counseling, and community outreach.\n>\n> 🌐 Learn more or donate: {{ $('On form submission').item.json['Optional Link'] ? $('On form submission').item.json['Optional Link'] : '[https://shieldofathena.com](https://shieldofathena.com)' }}\n>\n> #DomesticViolenceAwareness #MentalHealth #CommunitySupport #Education",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1952,
+        736
+      ],
+      "id": "f0604e76-1d76-4644-8218-fb99da74224b",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-exp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1824,
+        1072
+      ],
+      "id": "e06cdddd-26a9-4966-90f1-7c924681ada5",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "GXm4kIeCLHFK37a3",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"event_name\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"event_description\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"platform_posts\": {\n\t\t\t\"type\": \"object\",\n\t\t\t\"properties\": {\n\t\t\t\t\"LinkedIn\": {\n\t\t\t\t\t\"type\": \"object\",\n\t\t\t\t\t\"properties\": {\n\t\t\t\t\t\t\"post\": {\n\t\t\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"hashtags\": {\n\t\t\t\t\t\t\t\"type\": \"array\",\n\t\t\t\t\t\t\t\"items\": {\n\t\t\t\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"call_to_action\": {\n\t\t\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"Instagram\": {\n\t\t\t\t\t\"type\": \"object\",\n\t\t\t\t\t\"properties\": {\n\t\t\t\t\t\t\"image_suggestion\": {\n\t\t\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"caption\": {\n\t\t\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"hashtags\": {\n\t\t\t\t\t\t\t\"type\": \"array\",\n\t\t\t\t\t\t\t\"items\": {\n\t\t\t\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"emojis\": {\n\t\t\t\t\t\t\t\"type\": \"array\",\n\t\t\t\t\t\t\t\"items\": {\n\t\t\t\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"call_to_action\": {\n\t\t\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"Facebook\": {\n\t\t\t\t\t\"type\": \"object\",\n\t\t\t\t\t\"properties\": {\n\t\t\t\t\t\t\"post\": {\n\t\t\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"hashtags\": {\n\t\t\t\t\t\t\t\"type\": \"array\",\n\t\t\t\t\t\t\t\"items\": {\n\t\t\t\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"call_to_action\": {\n\t\t\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"image_suggestion\": {\n\t\t\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"Twitter\": {\n\t\t\t\t\t\"type\": \"object\",\n\t\t\t\t\t\"properties\": {\n\t\t\t\t\t\t\"post\": {\n\t\t\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"hashtags\": {\n\t\t\t\t\t\t\t\"type\": \"array\",\n\t\t\t\t\t\t\t\"items\": {\n\t\t\t\t\t\t\t\t\"type\": \"string\"\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"character_limit\": {\n\t\t\t\t\t\t\t\"type\": \"integer\"\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t\"additional_notes\": {\n\t\t\t\"type\": \"string\"\n\t\t}\n\t}\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        2144,
+        1072
+      ],
+      "id": "9acd3c44-9b3c-44aa-80db-0047ab217909",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "include": "selected",
+        "includeFields": "output.platform_posts.LinkedIn.post",
+        "options": {}
+      },
+      "id": "3d85262a-eb57-4be6-85c6-866f6f30a0e2",
+      "name": "Split Form Input",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        944,
+        368
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "image",
+              "fieldType": "file",
+              "acceptFileTypes": ".jpg,.png",
+              "requiredField": "={{ true }}"
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "Review the Text",
+          "formDescription": "=Please review the text, I will be Publishing this on Social Media, note that to generate the text I am using tokents.\nNote below Text : \n\nLinkedin : \n{{ $json.data[0].output.platform_posts.LinkedIn.post }}\n\nFacebook : \n{{ $json.data[0].output.platform_posts.Facebook.post }}\n\nTwitter : \n{{ $json.data[0].output.platform_posts.Twitter.post }}",
+          "buttonLabel": "Proceed to Next Step"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        1456
+      ],
+      "id": "e4ef89ff-2feb-4951-a43d-e3111b915dbd",
+      "name": "Upload Image",
+      "webhookId": "0dc811ef-b2e0-4213-a0c9-e9b5fb9fcbf1"
+    },
+    {
+      "parameters": {
+        "include": "selected",
+        "includeFields": "output.platform_posts.LinkedIn.post",
+        "options": {}
+      },
+      "id": "f9b11fab-c932-4532-9dc1-6cd9f1e7b704",
+      "name": "Split Data",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1200,
+        368
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d35062b-5f6d-44ba-bc52-54b0e841c31a",
+              "name": "Post Title/Topic",
+              "value": "={{ $('On form submission').item.json['Post Title/Topic'] }}",
+              "type": "string"
+            },
+            {
+              "id": "400ed7a9-d839-4fe7-b8a0-deb7d89e264a",
+              "name": "formMode",
+              "value": "={{ $('On form submission').item.json.formMode }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1488,
+        368
+      ],
+      "id": "093158cd-2ae1-48da-a1c4-eec0e71329a4",
+      "name": "Data for AI"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2480,
+        1072
+      ],
+      "id": "dcf5a971-425c-49b5-9fdd-5f40827f03cb",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "Thanks",
+        "completionMessage": "=Your post has successfully been submitted to Social Media\n\nThanks \n\nAI Agent\nShield of Athena",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        2672,
+        2256
+      ],
+      "id": "36695b9f-0f24-4f78-9365-e7875fb23679",
+      "name": "Form",
+      "webhookId": "e84b9492-038c-4701-a367-c68237ddebf6"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2fb3fd91-c13d-45ce-a7ec-612319a008fc",
+              "name": "metaTop",
+              "type": "object",
+              "value": "={{ $json }}"
+            }
+          ]
+        },
+        "options": {
+          "includeBinary": true
+        }
+      },
+      "id": "68028a7e-25d9-405a-b47e-a6c31f0f8315",
+      "name": "Nest Top Meta",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1792,
+        1456
+      ],
+      "typeVersion": 3.3
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "$input.item.binary.top = $input.item.binary.data;\ndelete $input.item.binary.data;\nreturn $input.item;"
+      },
+      "id": "c852101d-91ec-41f6-baf3-7eb8d4ad25f5",
+      "name": "Rename Image Binary Top Image",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        800,
+        2256
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v20.0",
+        "node": "110638833706072",
+        "edge": "photos",
+        "sendBinaryData": true,
+        "binaryPropertyName": "image",
+        "options": {
+          "queryParameters": {
+            "parameter": [
+              {
+                "name": "message",
+                "value": "={{ $('Aggregate').item.json.data[0].output.platform_posts.Facebook.post }}\n\n{{ $('Aggregate').item.json.data[0].output.platform_posts.Facebook.call_to_action }}\n"
+              },
+              {
+                "name": "link",
+                "value": "={{ $('Aggregate').item.json.data[0].output.platform_posts.Facebook.call_to_action }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        2368
+      ],
+      "id": "d92be644-3de6-4437-a629-152783a4be2c",
+      "name": "Publish to Facebook",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "authentication": "communityManagement",
+        "postAs": "organization",
+        "organization": "109818856",
+        "text": "={{ $('AI Agent').item.json.output.platform_posts.LinkedIn.post }}\n{{ $('Aggregate').item.json.data[0].output.platform_posts.LinkedIn.call_to_action }}",
+        "shareMediaCategory": "IMAGE",
+        "binaryPropertyName": "=image",
+        "additionalFields": {
+          "title": ""
+        }
+      },
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        1264,
+        2128
+      ],
+      "id": "ec11349f-eb99-4ba8-aef6-419b63a5741e",
+      "name": "Publish to LinkedIn",
+      "credentials": {
+        "linkedInCommunityManagementOAuth2Api": {
+          "id": "kytc2tuK5Nhopi4F",
+          "name": "LinkedIn account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Get the Data for Social Media Post using the Web Form \n",
+        "height": 400,
+        "width": 2340
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        592,
+        208
+      ],
+      "typeVersion": 1,
+      "id": "a9e247cd-1d5a-4565-a036-18c0a4c5ff07",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "text": "={{ $('Aggregate').item.json.data[0].output.platform_posts.Twitter.post }}\n",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.twitter",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        1888
+      ],
+      "id": "d6875781-6491-4fc8-9ca7-fc617385eb56",
+      "name": "X",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "# AI Agent will do its Job to generate relevant Posts for Socail Media\n",
+        "height": 580,
+        "width": 2320,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        592,
+        640
+      ],
+      "typeVersion": 1,
+      "id": "8a1fa605-cbd2-460d-899e-bf18164d734e",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# Get Impage to Be Publshed\n",
+        "height": 500,
+        "width": 2340,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        592,
+        1232
+      ],
+      "typeVersion": 1,
+      "id": "36dc9c4b-5fc1-4e7e-b905-7980b0e0223a",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "# Publish on Social Media\n",
+        "height": 1160,
+        "width": 1840
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        592,
+        1760
+      ],
+      "typeVersion": 1,
+      "id": "574f8dd5-494c-47dc-b0ed-c16cf3b529cb",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "# Confirmation that post is Published\n",
+        "height": 1140,
+        "width": 460,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2464,
+        1776
+      ],
+      "typeVersion": 1,
+      "id": "98b6786c-eb7f-4753-a602-f0824fc8dcc7",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3dfdc22a-5f69-4d5e-9fc0-f637695c46f9",
+              "name": "edit_history_tweet_ids",
+              "value": "={{ $json.edit_history_tweet_ids }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1648,
+        1888
+      ],
+      "id": "9b720de9-9cdc-45f9-a32a-6ded5cb53ff0",
+      "name": "Edit Fields",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v20.0/17841472318439506/media",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "facebookGraphApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "image_url",
+              "value": "={{ $json.data.url }}"
+            },
+            {
+              "name": "caption",
+              "value": "={{ $('AI Agent').item.json.output.platform_posts.Instagram.caption }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1584,
+        2576
+      ],
+      "id": "3a044849-4743-4082-a904-3c999955181e",
+      "name": "Image for Instagram",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v20.0",
+        "node": "17841472318439506",
+        "edge": "media_publish",
+        "options": {
+          "queryParameters": {
+            "parameter": [
+              {
+                "name": "creation_id",
+                "value": "={{ $json.id }}"
+              },
+              {
+                "name": "caption",
+                "value": "={{ $('AI Agent').item.json.output.platform_posts.Instagram.caption }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        1904,
+        2576
+      ],
+      "id": "64a552fb-44c3-49e3-b2eb-cc0c651b1340",
+      "name": "Publish to Instagram",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "numberInputs": 4
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        2224,
+        2240
+      ],
+      "id": "df4068da-999c-4e5d-b68c-8812e4b5faff",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.imgbb.com/1/upload?expiration=600&key=your api key",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "multipart/form-data"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "image",
+              "inputDataFieldName": "image"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1280,
+        2576
+      ],
+      "id": "4ea4425a-6bea-4404-a7fd-996c8088b26c",
+      "name": "Upload Image to imgbb.com",
+      "disabled": true
+    }
+  ],
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Split Form Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Form Input": {
+      "main": [
+        [
+          {
+            "node": "Split Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Image": {
+      "main": [
+        [
+          {
+            "node": "Nest Top Meta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Data": {
+      "main": [
+        [
+          {
+            "node": "Data for AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data for AI": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Upload Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nest Top Meta": {
+      "main": [
+        [
+          {
+            "node": "Rename Image Binary Top Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rename Image Binary Top Image": {
+      "main": [
+        [
+          {
+            "node": "X",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Publish to LinkedIn",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Publish to Facebook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Upload Image to imgbb.com",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publish to Facebook": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Publish to LinkedIn": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "X": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Image for Instagram": {
+      "main": [
+        [
+          {
+            "node": "Publish to Instagram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publish to Instagram": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Image to imgbb.com": {
+      "main": [
+        [
+          {
+            "node": "Image for Instagram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "a3d7628e089fca13cc7faba2dabd36e49e438a0b92720ff5b68f85a677b54630"
+  }
+}
