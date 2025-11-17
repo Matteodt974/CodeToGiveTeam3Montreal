@@ -17,7 +17,7 @@ interface QuizQuestion {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './quiz.component.html',
-  styleUrls: ['./quiz.component.css']
+  styleUrls: ['./quiz.component.css'],
 })
 export class QuizComponent {
   Math = Math;
@@ -30,55 +30,47 @@ export class QuizComponent {
 
   questions: QuizQuestion[] = [
     {
-      question: 'What percentage of women in Canada will experience intimate partner violence in their lifetime?',
+      question:
+        'What percentage of women in Canada will experience intimate partner violence in their lifetime?',
       options: [
-        { text: 'A) 1 in 10 (10%)', isCorrect: false },
-        { text: 'B) 1 in 6 (17%)', isCorrect: false },
-        { text: 'C) 1 in 4 (25%)', isCorrect: true },
-        { text: 'D) 1 in 3 (33%)', isCorrect: false }
+        { text: 'A) more than 30%', isCorrect: true },
+        { text: 'B) less than 30%', isCorrect: false },
       ],
-      explanation: 'Statistics show that 1 in 4 women in Canada will experience intimate partner violence in their lifetime. This highlights the widespread nature of this issue and the critical need for support services.'
+      explanation:
+        'Statistics shows that 44% of women and girls who had ever been in an intimate partner relationship reported experiencing some kind of psychological, physical, or sexual abuse in the context of an intimate relationship in their lifetime (since the age of 15)',
     },
     {
-      question: 'Which of the following is considered a form of domestic violence?',
+      question:
+        'In 2019, what percentage of people who had experienced IPV did not report it to the police',
       options: [
-        { text: 'A) Physical abuse only', isCorrect: false },
-        { text: 'B) Emotional, financial, and physical abuse', isCorrect: true },
-        { text: 'C) Only violence that leaves visible marks', isCorrect: false },
-        { text: 'D) Arguments between partners', isCorrect: false }
+        { text: 'A) more than 50%', isCorrect: true },
+        { text: 'B) less than 50%', isCorrect: false },
       ],
-      explanation: 'Domestic violence takes many forms including physical, emotional, psychological, financial, and sexual abuse. It\'s about power and control, not just physical violence.'
+      explanation:
+        'Statistics that in 2019, 80% of people who had experienced IPV did not report it to the police (women reported 22% of the time, and men 14% of the timeFootnote4 ).',
     },
     {
-      question: 'What is the most dangerous time for a survivor of domestic violence?',
+      question:
+        'What is the most dangerous time for a survivor of domestic violence?',
       options: [
         { text: 'A) During the relationship', isCorrect: false },
         { text: 'B) When they first seek help', isCorrect: false },
         { text: 'C) When leaving or shortly after leaving', isCorrect: true },
-        { text: 'D) Years after the relationship ends', isCorrect: false }
+        { text: 'D) Years after the relationship ends', isCorrect: false },
       ],
-      explanation: 'Research shows that the most dangerous time for a survivor is when leaving an abusive relationship or shortly after. This is why organizations like Shield of Athena provide emergency shelter and safety planning.'
+      explanation:
+        'Research shows that the most dangerous time for a survivor is when leaving an abusive relationship or shortly after. This is why organizations like Shield of Athena provide emergency shelter and safety planning.',
     },
     {
-      question: 'How does witnessing domestic violence affect children?',
+      question:
+        'In what percentage of cases, people who have experienced IPV don’t speak to anyone about the violence that they experienced, let alone report it.',
       options: [
-        { text: 'A) Children are too young to understand', isCorrect: false },
-        { text: 'B) It has no long-term effects', isCorrect: false },
-        { text: 'C) It can cause trauma, behavioral issues, and affect development', isCorrect: true },
-        { text: 'D) Only if they are directly harmed', isCorrect: false }
+        { text: 'A) More than 30%', isCorrect: true },
+        { text: 'B) Less than 30%', isCorrect: false },
       ],
-      explanation: 'Children who witness domestic violence can experience trauma, developmental delays, behavioral issues, and mental health challenges. Therapy and support services are crucial for their healing and recovery.'
+      explanation:
+        'The most common reasons provided by victims/survivors for not reporting their experience of intimate partner violence to the police are: the belief that abuse is a private or personal matter, and the perception that the incident is not important enough to report.',
     },
-    {
-      question: 'What is the best way to help someone experiencing domestic violence?',
-      options: [
-        { text: 'A) Tell them to leave immediately', isCorrect: false },
-        { text: 'B) Confront the abuser directly', isCorrect: false },
-        { text: 'C) Listen without judgment and provide resources', isCorrect: true },
-        { text: 'D) Wait until they ask for help', isCorrect: false }
-      ],
-      explanation: 'The best way to help is to listen without judgment, believe them, and provide information about resources like hotlines and shelters. Every person\'s situation is unique, and they need to make decisions that are safe for them.'
-    }
   ];
 
   selectAnswer(index: number): void {
@@ -134,11 +126,11 @@ export class QuizComponent {
     const percentage = (this.score / this.questions.length) * 100;
 
     if (percentage === 100) {
-      return '🌟 Perfect! You\'re very knowledgeable about family violence issues. Your awareness can help save lives by recognizing warning signs and supporting survivors.';
+      return "🌟 Perfect! You're very knowledgeable about family violence issues. Your awareness can help save lives by recognizing warning signs and supporting survivors.";
     } else if (percentage >= 80) {
       return '👏 Great job! You have a good understanding of family violence. Consider sharing this knowledge with friends and family to help create safer communities.';
     } else if (percentage >= 60) {
-      return '📚 You\'re learning! Family violence is a complex issue. Your donation will help fund education programs that spread this important knowledge.';
+      return "📚 You're learning! Family violence is a complex issue. Your donation will help fund education programs that spread this important knowledge.";
     } else {
       return '💡 Thank you for taking the quiz! Every question teaches us something new. Your support helps fund education programs that can prevent violence before it starts.';
     }
@@ -146,13 +138,16 @@ export class QuizComponent {
 
   getEmotionalMessage(): string {
     const emotionalMessages = [
-      "Every statistic represents a real person with hopes, dreams, and a right to live without fear. Your awareness can be the light that guides someone to safety.",
-      "Behind every form of abuse is a person struggling in silence. Understanding these different faces of violence helps us recognize when someone needs our help.",
-      "Leaving takes immense courage. Survivors need our compassion, not judgment. Your support during this critical time can literally save a life.",
-      "Children carry these invisible scars into adulthood. But with proper support and love, healing is possible. Every child deserves to grow up feeling safe.",
-      "Sometimes the most powerful thing we can do is simply listen and believe. Your compassion can be the first step in someone's journey to freedom and healing."
+      'Every statistic represents a real person with hopes, dreams, and a right to live without fear. Your awareness can be the light that guides someone to safety.',
+      'Behind every form of abuse is a person struggling in silence. Understanding these different faces of violence helps us recognize when someone needs our help.',
+      'Leaving takes immense courage. Survivors need our compassion, not judgment. Your support during this critical time can literally save a life.',
+      'Children carry these invisible scars into adulthood. But with proper support and love, healing is possible. Every child deserves to grow up feeling safe.',
+      "Sometimes the most powerful thing we can do is simply listen and believe. Your compassion can be the first step in someone's journey to freedom and healing.",
     ];
 
-    return emotionalMessages[this.currentQuestionIndex] || "Your knowledge and compassion can make a real difference in someone's life.";
+    return (
+      emotionalMessages[this.currentQuestionIndex] ||
+      "Your knowledge and compassion can make a real difference in someone's life."
+    );
   }
 }
