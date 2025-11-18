@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { AuthModalService } from '../../services/auth-modal.service';
 
 interface DonationEvent {
   id: number;
@@ -24,6 +25,7 @@ interface DonationEvent {
 export class DonationeventComponent implements OnInit {
   private http = inject(HttpClient);
   private router = inject(Router);
+  private authModalService = inject(AuthModalService);
   private apiBase = environment.apiBase;
 
   events: DonationEvent[] = [];
@@ -53,13 +55,8 @@ export class DonationeventComponent implements OnInit {
   }
 
   navigateToDonation(event: DonationEvent): void {
-    // Navigate to donation page with event info as query params
-    this.router.navigate(['/donate'], {
-      queryParams: {
-        eventId: event.id,
-        eventTitle: event.title,
-      },
-    });
+    // Open auth choice modal with event info (same as navbar "Donate Now")
+    this.authModalService.openAuthChoiceModal(event.id, event.title);
   }
 
   getProgressPercentage(event: DonationEvent): number {

@@ -32,7 +32,7 @@
         </a>
 
         <button
-          routerLink="/donate"
+          (click)="navigateToDonate()"
           class="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 shadow-sm transition-all duration-200 transform hover:scale-105"
         >
           Donate Now
@@ -507,5 +507,155 @@
         </button>
       </p>
     </div>
+  </div>
+</div>
+
+<!-- Auth Choice Modal -->
+<div
+  *ngIf="isAuthChoiceModalOpen"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"
+  (click)="closeAuthChoiceModal()"
+>
+  <div
+    class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl shadow-2xl max-w-4xl w-full p-8 transform transition-all"
+    (click)="$event.stopPropagation()"
+  >
+    <!-- Modal Header -->
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold text-gray-900 mb-3">Donate</h2>
+      <p class="text-lg text-gray-700">How do you wish to proceed</p>
+    </div>
+
+    <!-- Options Grid -->
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <!-- Login Option -->
+      <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+        <div class="flex flex-col items-center text-center space-y-4">
+          <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center">
+            <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </div>
+
+          <h3 class="text-xl font-bold text-gray-900">I already have an account</h3>
+
+          <p class="text-gray-600 text-sm">
+            Sign in to follow your impact
+          </p>
+
+          <ul class="space-y-2 text-sm text-gray-600 w-full text-left">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-indigo-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span>Pre-filled informations</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-indigo-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span>Donation history</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-indigo-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span>Fiscal receipt</span>
+            </li>
+          </ul>
+
+          <button
+            (click)="openLoginFromAuthChoice()"
+            class="w-full py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 shadow-md transition-all duration-200 transform hover:scale-105 text-base"
+          >
+            Sign in
+          </button>
+        </div>
+      </div>
+
+      <!-- Signup Option -->
+      <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+        <div class="flex flex-col items-center text-center space-y-4">
+          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
+            <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V9h7V2.99c3.69.92 6.47 4.15 7 7.95h-7v2.05z"/>
+            </svg>
+          </div>
+
+          <h3 class="text-xl font-bold text-gray-900">Sign up</h3>
+
+          <p class="text-gray-600 text-sm">
+            Sign up to see your impact in your community
+          </p>
+
+          <ul class="space-y-2 text-sm text-gray-600 w-full text-left">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-purple-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span>Badges and rewards</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-purple-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span>Follow your impact</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-purple-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span>Donor leaderboard</span>
+            </li>
+          </ul>
+
+          <button
+            (click)="openSignupFromAuthChoice()"
+            class="w-full py-3 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 shadow-md transition-all duration-200 transform hover:scale-105 text-base"
+          >
+            Sign up
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="flex items-center justify-center my-6">
+      <div class="flex-grow border-t border-gray-300"></div>
+      <span class="px-4 text-gray-500 font-medium">or</span>
+      <div class="flex-grow border-t border-gray-300"></div>
+    </div>
+
+    <!-- Guest Option -->
+    <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+      <div class="flex flex-col items-center text-center space-y-4">
+        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+          <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/>
+          </svg>
+        </div>
+
+        <button
+          (click)="continueAsGuest()"
+          class="px-8 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg font-medium hover:from-amber-600 hover:to-amber-700 shadow-md transition-all duration-200 transform hover:scale-105 text-base"
+        >
+          Continue as Guest
+        </button>
+
+        <p class="text-sm text-gray-600">
+          You can proceed with no account
+        </p>
+      </div>
+    </div>
+
+    <!-- Close Button -->
+    <button
+      (click)="closeAuthChoiceModal()"
+      class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+    >
+      <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
   </div>
 </div>
