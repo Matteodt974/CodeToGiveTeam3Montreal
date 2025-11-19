@@ -2,6 +2,9 @@
 A full-stack donation, awareness, and engagement platform built for **Morgan Stanley Code To Give 2025**.  
 Designed to empower **The Shield of Athena** through digital outreach, donor engagement, and community education.
 
+https://donatewithathena.com/
+
+
 ## Context
 This project was built as part of the **Morgan Stanley Code To Give 2025 Hackathon**, representing Team 3 from UQAM.
 
